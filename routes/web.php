@@ -11,6 +11,7 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\WhistlistController;
+use App\Http\Controllers\Backend\UserController;
 
 
 
@@ -24,7 +25,11 @@ use App\Http\Controllers\WhistlistController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/',[HomeController::class,'home']);
+
+Route::group(['middleware'=>'auth'],function(){
+
+
+Route::get('/',[HomeController::class,'home'])->name('admin.dashboard');
 
 Route::get('/customer/list',[CustomerController::class,'list']);
 Route::get('/customer/form',[CustomerController::class,'form']);
@@ -44,6 +49,10 @@ Route::get('/report/list',[ReportController::class,'list']);
 Route::get('/review/list',[ReviewController::class,'list']);
 Route::get('/whistlist/list',[WhistlistController::class,'list']);
 Route::get('/cart/list',[CartController::class,'list']);
+
+Route::get('/admin/logout',[UserController::class,'logout'])->name('admin.logout');
+
+});
 
 Route::get('/admin/login',[UserController::class,'loginForm'])->name('admin.login');
 Route::post('/login-post',[UserController::class,'loginPost'])->name('admin.login.post');
