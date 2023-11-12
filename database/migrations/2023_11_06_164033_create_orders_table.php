@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->date('date',50);
             $table->string('customer_name',50);
-            $table->string('price');
+            $table->double('price',15);
             $table->integer('quantity');
             $table->timestamps();
         });

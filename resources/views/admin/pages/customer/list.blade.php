@@ -19,7 +19,7 @@
    @foreach ($customers as $key=>$customer)
     <tr>
       <th scope="row">{{$key+1}}</th>
-      <td>{{$customer->name}}</td>
+      <td>{{$customer->customer_name}}</td>
       <td>{{$customer->email}}</td>
       <td>{{$customer->phoneNo}}</td>
       <td>{{$customer->address}}</td>

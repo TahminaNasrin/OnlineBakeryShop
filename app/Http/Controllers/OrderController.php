@@ -32,10 +32,10 @@ class OrderController extends Controller
        }
 
         Order::create([
-            'date'=>$request->Order_Date,
-            'customer_name'=>$request->Customer_Name,
-            'price'=>$request->Order_Price,
-            'quantity'=>$request->Order_Quantity
+            'date'=>$request->date,
+            'customer_name'=>$request->customer_name,
+            'price'=>$request->price,
+            'quantity'=>$request->quantity
         ]);
         
         notify()->success('Laravel Notify is awesome!');

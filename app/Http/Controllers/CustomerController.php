@@ -21,10 +21,10 @@ class CustomerController extends Controller
     {
         //dd($request->all());
         Customer::create([
-            'customer_name'=>$request->Customer_Name,
-            'email'=>$request->Customer_Email,
-            'phoneNo'=>$request->Customer_Phone,
-            'address'=>$request->Customer_Address
+            'customer_name'=>$request->customer_name,
+            'customer_email'=>$request->customer_email,
+            'customer_phoneNo'=>$request->customer_phoneNo,
+            'customer_address'=>$request->customer_address
         ]);
 
         return redirect()->back();

@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Http\Controllers\Backend;
+use App\Models\User;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+//use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -46,5 +48,56 @@ class UserController extends Controller
     {
         auth()->logout();
         return redirect()->route('admin.login');
+    }
+
+    public function list()
+    {
+        $users=User::all();
+        //dd($users);
+        return view('admin.pages.users.list',compact('users'));
+    }
+
+    public function form()
+    {
+        return view('admin.pages.users.form');
+    }
+
+    public function store(Request $request)
+    {
+        //dd($request->all());
+        $validate=Validator::make($request->all(),[
+            'user_name'=>'required',
+            'role'=>'required',
+            'user_email'=>'required|email',
+            'user_password'=>'required|min:5',
+        ]);
+
+        if($validate->fails())
+        {
+            return redirect()->back()->witherrors($validate);
+        }
+
+        $fileName=null;
+        if($request->hasFile('user_image'))
+        {
+            $file=$request->file('user_image');
+            $fileName=date('Ymdhis').'.'.$file->getClientOriginalExtension();
+           
+            $file->storeAs('/uploads',$fileName);
+
+        }
+
+        User::create([
+            'name'=>$request->user_name,
+            'role'=>$request->role,
+            'email'=>$request->user_email,
+            'image'=>$fileName,
+            'password'=>bcrypt($request->user_password),
+            
+        ]);
+
+        notify()->success('Laravel Notify is awesome!');
+
+        return redirect()->back()->witherrors($validate);
     }
 }

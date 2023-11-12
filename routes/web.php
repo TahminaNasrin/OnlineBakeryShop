@@ -1,17 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\OrderController;
-use App\Http\Controllers\OrderDetailsController;
-use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ReviewController;
-use App\Http\Controllers\CartController;
-use App\Http\Controllers\WhistlistController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\OrderDetailsController;
 
 
 
@@ -43,12 +43,25 @@ Route::get('/order/list',[OrderController::class,'list']);
 Route::get('/order/form',[OrderController::class,'form']);
 Route::post('/order/store',[OrderController::class,'store'])->name('order.store');
 
-Route::get('/order-details/list',[OrderDetailsController::class,'list']);
+Route::get('/order-details/list',[OrderDetailsController::class,'list'])->name('order.details.list');
+Route::get('/order-details/form',[OrderDetailsController::class,'form'])->name('order.details.form');
+Route::post('/order-details/store',[OrderDetailsController::class,'store'])->name('order.details.store');
+
+
 Route::get('/payment/list',[PaymentController::class,'list']);
+Route::get('/payment/form',[PaymentController::class,'form'])->name('payment.form');
+
 Route::get('/report/list',[ReportController::class,'list']);
 Route::get('/review/list',[ReviewController::class,'list']);
-Route::get('/whistlist/list',[WhistlistController::class,'list']);
+Route::get('/wishlist/list',[WishlistController::class,'list']);
+
 Route::get('/cart/list',[CartController::class,'list']);
+Route::get('/cart/form',[CartController::class,'form'])->name('cart.form');
+Route::post('/cart/store',[CartController::class,'store'])->name('cart.store');
+
+Route::get('/users/list',[UserController::class,'list'])->name('users.list');
+Route::get('/users/form',[UserController::class,'form'])->name('users.form');
+Route::post('/users/store',[UserController::class,'store'])->name('users.store');
 
 Route::get('/admin/logout',[UserController::class,'logout'])->name('admin.logout');
 

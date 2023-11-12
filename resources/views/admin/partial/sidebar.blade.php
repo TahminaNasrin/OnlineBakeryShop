@@ -12,6 +12,11 @@
                                 Customer
                             </a>
 
+                            <a class="nav-link" href="{{route('users.list')}}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Users
+                           </a>
+
                             <a class="nav-link" href="{{url('/product/type')}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Product Categories
@@ -32,9 +37,9 @@
                                 Order Details
                             </a>
                             
-                            <a class="nav-link" href="{{url('/whistlist/list')}}">
+                            <a class="nav-link" href="{{url('/wishlist/list')}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                               WhistList
+                               WishList
                             </a>
 
                             <a class="nav-link" href="{{url('/payment/list')}}">
