@@ -23,7 +23,7 @@
         <td>{{$user->role}}</td>
         <td>{{$user->email}}</td>
         <td>
-          <img style="border-radius: 60px;" width="7%" src="{{url('/uploads/'.$user->image)}}" alt="">
+          <img style="border-radius: 60px;" width="8%" src="{{url('/uploads/'.$user->image)}}" alt="">
         </td>
         
         <td>

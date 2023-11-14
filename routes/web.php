@@ -1,19 +1,18 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CartController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\ReportController;
-use App\Http\Controllers\ReviewController;
-use App\Http\Controllers\PaymentController;
-use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\WishlistController;
-use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\Backend\CartController;
+use App\Http\Controllers\Backend\HomeController;
+use App\Http\Controllers\Backend\OrderController;
+use App\Http\Controllers\Backend\ReportController;
+use App\Http\Controllers\Backend\ReviewController;
+use App\Http\Controllers\Backend\PaymentController;
+use App\Http\Controllers\Backend\CustomerController;
+use App\Http\Controllers\Backend\WishlistController;
+use App\Http\Controllers\Backend\CategoriesController;
 use App\Http\Controllers\Backend\UserController;
-use App\Http\Controllers\OrderDetailsController;
-
-
+use App\Http\Controllers\Backend\OrderDetailsController;
+use App\Http\Controllers\Frontend\HomeController as FrontendHomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,21 +25,38 @@ use App\Http\Controllers\OrderDetailsController;
 |
 */
 
+//website routes
+Route::get('/',[FrontendHomeController::class,'home'])->name('home');
+
+
+
+//frontend 
+Route::group(['prefix'=>'admin'], function(){ 
+
+
+
+//login
+Route::get('/login',[UserController::class,'loginForm'])->name('admin.login');
+Route::post('/login-post',[UserController::class,'loginPost'])->name('admin.login.post');
+
+//all pages controller
 Route::group(['middleware'=>'auth'],function(){
 
+//logout
+Route::get('/logout',[UserController::class,'logout'])->name('admin.logout');
 
 Route::get('/',[HomeController::class,'home'])->name('admin.dashboard');
 
-Route::get('/customer/list',[CustomerController::class,'list']);
-Route::get('/customer/form',[CustomerController::class,'form']);
+Route::get('/customer/list',[CustomerController::class,'list'])->name('customer.list');
+Route::get('/customer/form',[CustomerController::class,'form'])->name('customer.form');
 Route::post('/customer/store',[CustomerController::class,'store'])->name('customer.store');
 
-Route::get('/product/type',[CategoriesController::class,'list']);
-Route::get('/product/form',[CategoriesController::class,'form']);
+Route::get('/product/type',[CategoriesController::class,'list'])->name('categories.list');
+Route::get('/product/form',[CategoriesController::class,'form'])->name('categories.form');
 Route::post('/product/store',[CategoriesController::class,'store'])->name('product.store');
 
-Route::get('/order/list',[OrderController::class,'list']);
-Route::get('/order/form',[OrderController::class,'form']);
+Route::get('/order/list',[OrderController::class,'list'])->name('order.list');
+Route::get('/order/form',[OrderController::class,'form'])->name('order.form');
 Route::post('/order/store',[OrderController::class,'store'])->name('order.store');
 
 Route::get('/order-details/list',[OrderDetailsController::class,'list'])->name('order.details.list');
@@ -48,14 +64,14 @@ Route::get('/order-details/form',[OrderDetailsController::class,'form'])->name('
 Route::post('/order-details/store',[OrderDetailsController::class,'store'])->name('order.details.store');
 
 
-Route::get('/payment/list',[PaymentController::class,'list']);
+Route::get('/payment/list',[PaymentController::class,'list'])->name('payment.list');
 Route::get('/payment/form',[PaymentController::class,'form'])->name('payment.form');
 
-Route::get('/report/list',[ReportController::class,'list']);
-Route::get('/review/list',[ReviewController::class,'list']);
-Route::get('/wishlist/list',[WishlistController::class,'list']);
+Route::get('/report/list',[ReportController::class,'list'])->name('report.list');
+Route::get('/review/list',[ReviewController::class,'list'])->name('review.list');
+Route::get('/wishlist/list',[WishlistController::class,'list'])->name('wishlist.list');
 
-Route::get('/cart/list',[CartController::class,'list']);
+Route::get('/cart/list',[CartController::class,'list'])->name('cart.list');
 Route::get('/cart/form',[CartController::class,'form'])->name('cart.form');
 Route::post('/cart/store',[CartController::class,'store'])->name('cart.store');
 
@@ -63,10 +79,5 @@ Route::get('/users/list',[UserController::class,'list'])->name('users.list');
 Route::get('/users/form',[UserController::class,'form'])->name('users.form');
 Route::post('/users/store',[UserController::class,'store'])->name('users.store');
 
-Route::get('/admin/logout',[UserController::class,'logout'])->name('admin.logout');
-
+ });
 });
-
-Route::get('/admin/login',[UserController::class,'loginForm'])->name('admin.login');
-Route::post('/login-post',[UserController::class,'loginPost'])->name('admin.login.post');
-
