@@ -1,7 +1,7 @@
 @extends('admin.master')
 @section('content')
 <h1>Product list</h1>
-<a href="/product/form">
+<a href="{{route('categories.form')}}">
     <button class='btn btn-success'>Add Product</button>
 </a>
 <table class="table">
@@ -23,8 +23,9 @@
       <td>{{$category->quantity}}</td>
       <td>{{$category->status}}</td>
       <td>
-        <a class="btn btn-success">Edit</a>
-        <a class="btn btn-danger">Delete</a>
+        <a href="{{route('categories.edit',$category->id)}}" class="btn btn-success">Edit</a>
+        <a href="{{route('categories.delete',$category->id)}}" class="btn btn-danger">Delete</a>
+        <a class="btn btn-primary">View</a>
      </td>
     </tr>
     

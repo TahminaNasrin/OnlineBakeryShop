@@ -1,6 +1,6 @@
 @extends('admin.master')
 @section('content')
-<form action="{{route('product.store')}}" method="post" autocomplete="off">
+<form action="{{route('categories.store')}}" method="post" autocomplete="off">
     @csrf
 
   <div class="form-group">

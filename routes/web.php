@@ -51,9 +51,13 @@ Route::get('/customer/list',[CustomerController::class,'list'])->name('customer.
 Route::get('/customer/form',[CustomerController::class,'form'])->name('customer.form');
 Route::post('/customer/store',[CustomerController::class,'store'])->name('customer.store');
 
-Route::get('/product/type',[CategoriesController::class,'list'])->name('categories.list');
+Route::get('/categories/list',[CategoriesController::class,'list'])->name('categories.list');
+Route::get('/categories/delete/{id}',[CategoriesController::class,'delete'])->name('categories.delete');
+Route::get('/categories/edit/{id}',[CategoriesController::class,'edit'])->name('categories.edit');
+Route::put('/categories/update/{id}',[CategoriesController::class,'update'])->name('categories.update');
+
 Route::get('/product/form',[CategoriesController::class,'form'])->name('categories.form');
-Route::post('/product/store',[CategoriesController::class,'store'])->name('product.store');
+Route::post('/product/store',[CategoriesController::class,'store'])->name('categories.store');
 
 Route::get('/order/list',[OrderController::class,'list'])->name('order.list');
 Route::get('/order/form',[OrderController::class,'form'])->name('order.form');
@@ -66,6 +70,7 @@ Route::post('/order-details/store',[OrderDetailsController::class,'store'])->nam
 
 Route::get('/payment/list',[PaymentController::class,'list'])->name('payment.list');
 Route::get('/payment/form',[PaymentController::class,'form'])->name('payment.form');
+Route::post('/payment/store',[PaymentController::class,'store'])->name('payment.store');
 
 Route::get('/report/list',[ReportController::class,'list'])->name('report.list');
 Route::get('/review/list',[ReviewController::class,'list'])->name('review.list');

@@ -1,7 +1,7 @@
 @extends('admin.master')
 @section('content')
 <h1>Customer List</h1>
-<a href="/customer/form">
+<a href="{{route('customer.form')}}">
     <button class='btn btn-success'>Add Customers</button>
 </a>
 <table class="table">

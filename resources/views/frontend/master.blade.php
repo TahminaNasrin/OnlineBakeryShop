@@ -12,6 +12,7 @@
 
 
         @include('frontend.partials.topbar')
+        @include('notify::components.notify')
 
 
     <!-- Navbar Start -->
@@ -125,7 +126,7 @@
             </div>
 
 
-            @yeild('content')
+            @yield('content')
         </div>
     </div>
     <!-- Facts End -->
@@ -456,8 +457,11 @@
     </div>
     <!-- Testimonial End -->
 
+    <!-- Footer Start -->
 
+    @include('frontend.partials.footer')
     
+    <!-- Footer End -->
 
 
     <!-- Copyright Start -->
@@ -493,6 +497,7 @@
 
     <!-- Template Javascript -->
     <script src="{{url('Frontend/')}}/js/main.js"></script>
+    @notifyJs
 </body>
 
 </html>
