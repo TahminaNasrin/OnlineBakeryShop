@@ -10,7 +10,7 @@ class PaymentController extends Controller
 {
     public function list()
     {
-        $payments=Payment::all();
+        $payments=Payment::paginate(5);
 
         return view('admin.pages.payment.list',compact('payments'));
     }
@@ -21,7 +21,7 @@ class PaymentController extends Controller
     }
     public function store(Request $request)
     {
-        dd($request->all());
+        //dd($request->all());
        $valided=Validator::make($request->all(),[
         'date'=>'required',
         'order_id'=>'required',

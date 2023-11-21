@@ -13,6 +13,7 @@ use App\Http\Controllers\Backend\CategoriesController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\OrderDetailsController;
 use App\Http\Controllers\Frontend\HomeController as FrontendHomeController;
+use App\Http\Controllers\Frontend\CustomerController as FrontendCustomerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +29,11 @@ use App\Http\Controllers\Frontend\HomeController as FrontendHomeController;
 //website routes
 Route::get('/',[FrontendHomeController::class,'home'])->name('home');
 
+Route::get('/registration',[FrontendCustomerController::class,'registration'])->name('customer.registration');
+Route::post('/registration/store',[FrontendCustomerController::class,'store'])->name('customer.registration.store');
 
+Route::get('/login',[FrontendCustomerController::class,'login'])->name('customer.login');
+Route::post('/login/post',[FrontendCustomerController::class,'loginPost'])->name('customer.login.post');
 
 //frontend 
 Route::group(['prefix'=>'admin'], function(){ 
@@ -55,7 +60,6 @@ Route::get('/categories/list',[CategoriesController::class,'list'])->name('categ
 Route::get('/categories/delete/{id}',[CategoriesController::class,'delete'])->name('categories.delete');
 Route::get('/categories/edit/{id}',[CategoriesController::class,'edit'])->name('categories.edit');
 Route::put('/categories/update/{id}',[CategoriesController::class,'update'])->name('categories.update');
-
 Route::get('/product/form',[CategoriesController::class,'form'])->name('categories.form');
 Route::post('/product/store',[CategoriesController::class,'store'])->name('categories.store');
 

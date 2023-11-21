@@ -34,22 +34,22 @@
                     <h4 class="text-light mb-4">Photo Gallery</h4>
                     <div class="row g-2">
                         <div class="col-4">
-                            <img class="img-fluid bg-light rounded p-1" src="img/product-1.jpg" alt="Image">
+                            <img class="img-fluid bg-light rounded p-1" src="{{url('Frontend/')}}/img/product-1.jpg" alt="Image">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid bg-light rounded p-1" src="img/product-2.jpg" alt="Image">
+                            <img class="img-fluid bg-light rounded p-1" src="{{url('Frontend/')}}/img/product-2.jpg" alt="Image">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid bg-light rounded p-1" src="img/product-3.jpg" alt="Image">
+                            <img class="img-fluid bg-light rounded p-1" src="{{url('Frontend/')}}/img/product-3.jpg" alt="Image">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid bg-light rounded p-1" src="img/product-2.jpg" alt="Image">
+                            <img class="img-fluid bg-light rounded p-1" src="{{url('Frontend/')}}/img/product-2.jpg" alt="Image">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid bg-light rounded p-1" src="img/product-3.jpg" alt="Image">
+                            <img class="img-fluid bg-light rounded p-1" src="{{url('Frontend/')}}/img/product-3.jpg" alt="Image">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid bg-light rounded p-1" src="img/product-1.jpg" alt="Image">
+                            <img class="img-fluid bg-light rounded p-1" src="{{url('Frontend/')}}/img/product-1.jpg" alt="Image">
                         </div>
                     </div>
                 </div>
