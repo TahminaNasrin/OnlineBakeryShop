@@ -17,6 +17,11 @@
                                 Users
                            </a>
 
+                           <a class="nav-link" href="{{route('product.list')}}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Products
+                           </a>
+
                             <a class="nav-link" href="{{route('categories.list')}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Product Categories

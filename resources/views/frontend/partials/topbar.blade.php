@@ -10,11 +10,8 @@
                 </ol>
             </div>
             <div class="col-lg-6 px-5 text-end">
-                <small>Follow us:</small>
-                <div class="h-100 d-inline-flex align-items-center">
-                    <a class="btn-lg-square text-primary border-end rounded-0" href="{{route('customer.login')}}" >Login  </a> |
-                    <a class="btn-lg-square text-primary pe-0" href="{{route('customer.registration')}}" style="margin-left:5px ;">  Registration </a>
-                </div>
+            
+
             </div>
         </div>
     </div>
