@@ -40,6 +40,7 @@ Route::get('/single-product',[ProductController::class,'singleProductView'])->na
 
 Route::group(['middleware'=>'auth'],function(){
 
+    Route::get('/profile',[FrontendCustomerController::class,'profile'])->name('profile.view');
     Route::get('/logout',[FrontendCustomerController::class,'logout'])->name('customer.logout');
 
 });
@@ -53,10 +54,11 @@ Route::group(['prefix'=>'admin'], function(){
 Route::get('/login',[UserController::class,'loginForm'])->name('admin.login');
 Route::post('/login-post',[UserController::class,'loginPost'])->name('admin.login.post');
 
+
 //all pages controller
 Route::group(['middleware'=>'auth'],function(){
 
- 
+Route::group(['middleware'=>'checkAdmin'],function(){
 
 //logout
 Route::get('/logout',[UserController::class,'logout'])->name('admin.logout');
@@ -102,6 +104,6 @@ Route::post('/cart/store',[CartController::class,'store'])->name('cart.store');
 Route::get('/users/list',[UserController::class,'list'])->name('users.list');
 Route::get('/users/form',[UserController::class,'form'])->name('users.form');
 Route::post('/users/store',[UserController::class,'store'])->name('users.store');
- 
+});
 });
 });

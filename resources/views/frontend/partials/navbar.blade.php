@@ -32,7 +32,7 @@
                 @guest
                 <div class="h-100 d-inline-flex align-items-center">
                     <a class="btn-lg-square text-primary border-end rounded-0" href="{{route('customer.login')}}" >Login </a>
-                    <span style="padding: 5px;">| </span>
+                    <span style="padding: 5px;">  |  </span>
                     <a class="btn-lg-square text-primary pe-0" href="{{route('customer.registration')}}" style="margin-left:5px ;">  Registration </a>
                 </div>
                 @endguest
@@ -40,6 +40,7 @@
 
                 @auth
                <a class="btn-lg-square text-primary pe-0" href="{{route('customer.logout')}}" style="margin-left:5px ;">  Logout </a>
+            <a class="btn-lg-square text-primary pe-0" href="{{route('profile.view')}}" style="margin-left:5px ;"> ({{auth()->user()->name}}) </a>
                @endauth
                
             </div>

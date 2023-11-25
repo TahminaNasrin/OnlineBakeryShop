@@ -13,7 +13,11 @@ class CustomerController extends Controller
     {
         return view('frontend.pages.registration');
     }
-    
+     
+    public function profile()
+    {
+        return view('frontend.pages.profile');
+    }
     
     public function store(Request $request)
     {
