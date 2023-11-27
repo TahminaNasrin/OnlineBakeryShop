@@ -1,4 +1,4 @@
-@extends('admin.master')
+<!-- @extends('admin.master')
 @section('content')
 <h1>Order List</h1>
 <a href="{{route('order.form')}}">
@@ -9,6 +9,7 @@
     <tr>
       <th scope="col">#</th>
       <th scope="col">Date</th>
+      <th scope="col">Product ID</th>
       <th scope="col">Customer Name</th>
       <th scope="col">Price</th>
       <th scope="col">Quantity</th>
@@ -20,6 +21,7 @@
     <tr>
       <th scope="row">{{$key+1}}</th>
       <td>{{$order->date}}</td>
+      <td>{{$order->product_id}}</td>
       <td>{{$order->customer_name}}</td>
       <td>{{$order->price}}</td>
       <td>{{$order->quantity}}</td>
@@ -32,4 +34,4 @@
   </tbody>
 </table>
 {{$orders->links()}}
-@endsection
+@endsection -->

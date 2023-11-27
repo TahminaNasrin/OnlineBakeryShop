@@ -1,4 +1,4 @@
-@extends('admin.master')
+<!-- @extends('admin.master')
 @section('content')
 <form action="{{route('order.store')}}" method="post" autocomplete="off">
     @csrf
@@ -8,6 +8,16 @@
     <input type="date" class="form-control" name=" date" id="exampleFormControlSelect1" placeholder="Enter Date" required >
 
     @error('date')
+  <div class="alert alert-danger">{{$message}}</div>
+  @enderror
+
+  </div>
+
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Product ID</label>
+    <input type="numeric" class="form-control" name="product_id" id="exampleFormControlSelect1" placeholder="Enter Product ID:" required>
+
+    @error('product_id')
   <div class="alert alert-danger">{{$message}}</div>
   @enderror
 
@@ -52,4 +62,4 @@
 
 </form>
 
-@endsection
+@endsection -->

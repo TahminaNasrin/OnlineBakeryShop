@@ -9,38 +9,40 @@ use Illuminate\Support\Facades\Validator;
 
 class OrderController extends Controller
 {
-    public function list()
-    {
-        $orders=Order::paginate(5);
-        return view('admin.pages.order.list',compact('orders'));
-    }
-    public function form()
-    {
-        return view('admin.pages.order.form');
-    }
-    public function store(Request $request)
-    {
-        //dd($request->all());
-       $valided=Validator::make($request->all(),[
-        'date'=>'required',
-        'customer_name'=>'required',
-        'price'=>'required',
-        'quantity'=>'required'
-       ]);
+    // public function list()
+    // {
+    //     $orders=Order::paginate(5);
+    //     return view('admin.pages.order.list',compact('orders'));
+    // }
+    // public function form()
+    // {
+    //     return view('admin.pages.order.form');
+    // }
+    // public function store(Request $request)
+    // {
+    //     //dd($request->all());
+    //    $valided=Validator::make($request->all(),[
+    //     'date'=>'required',
+    //     'product_id'=>'required',
+    //     'customer_name'=>'required',
+    //     'price'=>'required',
+    //     'quantity'=>'required'
+    //    ]);
 
-       if($valided->fails()){
-        return redirect()->back()->witherrors($valided);
-       }
+    //    if($valided->fails()){
+    //     return redirect()->back()->witherrors($valided);
+    //    }
 
-        Order::create([
-            'date'=>$request->date,
-            'customer_name'=>$request->customer_name,
-            'price'=>$request->price,
-            'quantity'=>$request->quantity
-        ]);
+    //     Order::create([
+    //         'date'=>$request->date,
+    //         'product_id'=>$request->product_id,
+    //         'customer_name'=>$request->customer_name,
+    //         'price'=>$request->price,
+    //         'quantity'=>$request->quantity
+    //     ]);
         
-        notify()->success('Laravel Notify is awesome!');
+    //     notify()->success('Laravel Notify is awesome!');
 
-        return redirect()->back()->witherrors($valided);
-    }
+    //     return redirect()->back()->witherrors($valided);
+    // }
 }

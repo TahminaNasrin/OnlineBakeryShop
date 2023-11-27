@@ -1,76 +1,119 @@
 @extends('frontend.master')
 @section('content')
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
 
-<div class="container emp-profile">
-            <form method="post">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="profile-img">
-                            <!-- <img src="{{auth()->user()->image}}" alt="http://placehold.it/150x150"/> -->
-                            <img src="http://placehold.it/150x150" id="imgProfile" style="width: 150px; height: 150px" class="img-thumbnail" />
-                            <div class="file btn btn-lg btn-primary">
-                                Change Photo
-                                <!-- <input type="file" name="file"/> -->
-                            </div> 
+<div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+
+                    <div class="card-body">
+                        <div class="card-title mb-4">
+                            <div class="d-flex justify-content-start">
+                                <div class="image-container">
+                                    <img src="http://placehold.it/150x150" id="imgProfile" style="width: 150px; height: 150px" class="img-thumbnail" />
+                                    <div class="middle">
+                                     <a href="" class="m-t-10 waves-effect waves-dark btn btn-primary btn-md btn-rounded" data-abc="true">Edit Profile</a>
+                                    </div>
+                                </div>
+                                <div class="userData ml-3">
+                                    <h2 class="d-block" style="font-size: 1.5rem; font-weight: bold"><a href="javascript:void(0);">{{auth()->user()->name}}</a></h2>
+                                    <h6 class="d-block"><a href="javascript:void(0)">20</a> Completed Orders</h6>
+                                    <h6 class="d-block"><a href="javascript:void(0)">6</a> Pending Oders</h6>
+                                </div>
+                                <div class="ml-auto">
+                                    <input type="button" class="btn btn-primary d-none" id="btnDiscard" value="Discard Changes" />
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="col-md-6">
-                        <div class="profile-head">
-                                    <h5>
-                                    {{auth()->user()->name}}
-                                    </h5>
-                                    <h6>
-                                    {{auth()->user()->role}}
-                                    </h6>
-                            
-                        </div>
-                    </div>
-                
-                    <div class="col-md-2">
-                        <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
-                    </div>
-                </div>
-                <div class="row">
-        
-                    <div class="col-md-8">
-                        
-                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+                        <div class="row">
+                            <div class="col-12">
+                                <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="basicInfo-tab" data-toggle="tab" href="#basicInfo" role="tab" aria-controls="basicInfo" aria-selected="true">Basic Info</a>
+                                    </li>
+                                   
+                                </ul>
+                                <div class="tab-content ml-1" id="myTabContent">
+                                    <div class="tab-pane fade show active" id="basicInfo" role="tabpanel" aria-labelledby="basicInfo-tab">
+                                        
+
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Full Name</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                {{ auth()->user()->name }}
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        
                                         
                                         <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Name</label>
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Email</label>
                                             </div>
-                                            <div class="col-md-6">
-                                                <p>{{auth()->user()->name}}</p>
+                                            <div class="col-md-8 col-6">
+                                                {{ auth()->user()->email }}
                                             </div>
                                         </div>
+                                        <hr />
                                         <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Email</label>
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Role</label>
                                             </div>
-                                            <div class="col-md-6">
-                                                <p>{{auth()->user()->email}}</p>
-                                            </div>
-                                        </div>
-                
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Role</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>{{auth()->user()->role}}</p>
+                                            <div class="col-md-8 col-6">
+                                                {{ auth()->user()->role }}
                                             </div>
                                         </div>
+
+                                    </div>
+                                    
+                                </div>
                             </div>
-                            
+                        </div>
+
                     </div>
+
                 </div>
-            </form>           
+            </div>
         </div>
+    </div>
+
+    <hr>
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Date</th>
+      <th scope="col">Product</th>
+      <th scope="col">Status</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>   
+
+ 
+    @foreach ($orders as $order)
+   
+        <tr>
+          <th scope="row">{{$order->id}}</th>
+          <td>{{$order->created_at}}</td>
+          <td>{{$order->product_id}}</td>
+          <td>{{$order->status}}</td>
+          <td>
+            @if($order->status=='pending')
+            <a class="btn btn-danger" href="{{route('order.cancel',$order->id)}}">Cancel Order</a>
+            @endif  
+        </td>
+        </tr>
+    @endforeach
+       
+        
+   
+    
+  </tbody>
+</table>
+    
 
 @endsection

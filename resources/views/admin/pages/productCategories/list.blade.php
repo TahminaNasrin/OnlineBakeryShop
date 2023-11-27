@@ -1,6 +1,6 @@
 @extends('admin.master')
 @section('content')
-<h1>Product list</h1>
+<h1>Product Categories list</h1>
 <a href="{{route('categories.form')}}">
     <button class='btn btn-success'>Add Product</button>
 </a>

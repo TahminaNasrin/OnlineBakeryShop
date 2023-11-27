@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->date('date',50);
-            $table->string('customer_name',50);
-            $table->double('price',15);
-            $table->integer('quantity');
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('product_id')->constrained();
+            $table->string('status')->default('pending');
             $table->timestamps();
         });
     }
