@@ -28,7 +28,7 @@
       <td>{{$product->stock}}</td>
       <td>{{$product->description}}</td>
       <td>
-         <img style="border-radius: 60px;" width="8%" src="{{url('/uploads/'.$product->image)}}" alt="">
+         <img  width="8%" src="{{url('/uploads/'.$product->image)}}" alt="">
       </td>
       <td>{{$product->status}}</td>
       <td>

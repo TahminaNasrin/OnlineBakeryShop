@@ -20,6 +20,6 @@ class CheckAdmin
             return $next($request);
         }
         notify()->error('You are not admin.');
-        return redirect()->route('home');
+        return redirect()->route('frontend.home');
     }
 }

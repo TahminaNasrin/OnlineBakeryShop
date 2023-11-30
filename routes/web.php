@@ -39,7 +39,7 @@ Route::get('/login',[FrontendCustomerController::class,'login'])->name('customer
 Route::post('/login/post',[FrontendCustomerController::class,'loginPost'])->name('customer.login.post');
 
 Route::get('/all-product',[FrontendProductController::class,'allProduct'])->name('product.all');
-Route::get('/single-product',[FrontendProductController::class,'singleProductView'])->name('single.product.view');
+Route::get('/single-product/{id}',[FrontendProductController::class,'singleProductView'])->name('single.product.view');
 
 Route::group(['middleware'=>'auth'],function(){
 

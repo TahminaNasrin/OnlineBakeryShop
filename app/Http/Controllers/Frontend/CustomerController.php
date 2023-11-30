@@ -60,7 +60,7 @@ class CustomerController extends Controller
         if(auth()->attempt($credentials))
         {
             notify()->success('Login Success.');
-            return redirect()->route('home');
+            return redirect()->route('frontend.home');
         }
 
         notify()->error('Invalid Credentials.');
