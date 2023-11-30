@@ -22,13 +22,33 @@
                 <a href="contact.html" class="nav-item nav-link">Contact</a>
             </div>
             <div class=" d-none d-lg-flex">
-                <div class="flex-shrink-0 btn-lg-square border border-light rounded-circle">
+                <!-- <div class="flex-shrink-0 btn-lg-square border border-light rounded-circle">
                     <i class="fa fa-phone text-primary"></i>
                 </div>
                 <div class="ps-3">
                     <small class="text-primary mb-0">Call Us</small>
                     <p class="text-light fs-5 mb-0">+012 345 6789</p>
-                </div>
+                </div> -->
+                
+                
+                
+                <a class="btn-lg-square text-primary pe-0" href="{{route('cart.view')}}">
+                    <i class="bi-cart-fill me-1"></i>
+                    Cart
+                    <span class="badge bg-dark text-white ms-1 rounded-pill">
+
+                        @if(session()->has('vcart'))
+                        {{ count(session()->get('vcart')) }}
+                        @else
+                        0
+                        @endif
+
+                    </span>
+                </a>
+                
+                
+
+
                 @guest
                 <div class="h-100 d-inline-flex align-items-center">
                     <a class="btn-lg-square text-primary border-end rounded-0" href="{{route('customer.login')}}" >Login </a>
@@ -39,8 +59,10 @@
 
 
                 @auth
-               <a class="btn-lg-square text-primary pe-0" href="{{route('customer.logout')}}" style="margin-left:5px ;">  Logout </a>
-            <a class="btn-lg-square text-primary pe-0" href="{{route('profile.view')}}" style="margin-left:5px ;"> ({{auth()->user()->name}}) </a>
+                <div class="ps-3">
+                    <a class="btn-lg-square text-primary pe-0" href="{{route('customer.logout')}}" style="margin-left:5px ;">  Logout </a>
+                    <a class="btn-lg-square text-primary pe-0" href="{{route('profile.view')}}" style="margin-left:5px ;"> ({{auth()->user()->name}}) </a>
+               </div>
                @endauth
                
             </div>

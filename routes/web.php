@@ -13,6 +13,7 @@ use App\Http\Controllers\Backend\CustomerController;
 use App\Http\Controllers\Backend\WishlistController;
 use App\Http\Controllers\Backend\CategoriesController;
 use App\Http\Controllers\Backend\OrderDetailsController;
+use App\Http\Controllers\Frontend\CartController as FrontendCartController;
 use App\Http\Controllers\Frontend\HomeController as FrontendHomeController;
 use App\Http\Controllers\Frontend\OrderController as FrontendOrderController;
 use App\Http\Controllers\Frontend\ProductController as FrontendProductController;
@@ -40,6 +41,10 @@ Route::post('/login/post',[FrontendCustomerController::class,'loginPost'])->name
 
 Route::get('/all-product',[FrontendProductController::class,'allProduct'])->name('product.all');
 Route::get('/single-product/{id}',[FrontendProductController::class,'singleProductView'])->name('single.product.view');
+//cart codes
+
+Route::get('cart-view',[FrontendCartController::class,'cartView'])->name('cart.view');
+Route::get('add-to-cart/{product_id}',[FrontendCartController::class,'addToCart'])->name('add.to.cart');
 
 Route::group(['middleware'=>'auth'],function(){
 
