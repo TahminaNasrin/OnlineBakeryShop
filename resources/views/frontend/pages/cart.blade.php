@@ -23,8 +23,15 @@
                     </div>
 
                     @if(session()->has('vcart'))
-                    @foreach (session()->get('vcart') as $item )
-                    
+                    @foreach(session()->get('vcart') as $item )
+                    <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
+                        <div class="d-flex flex-row"><img class="rounded" src="https://i.imgur.com/QRwjbm5.jpg" width="40">
+                            <div class="ml-2"><span class="font-weight-bold d-block">{{$item['name']}}</span><span class="spec"></span></div>
+                        </div>
+                        <div class="d-flex flex-row align-items-center"><span class="d-block">{{$item['quantity']}} x {{$item['price']}} .BDT</span>
+                        <span class="d-block ml-5 font-weight-bold"> = {{$item['subtotal']}} .BDT</span><i class="fa fa-trash-o ml-3 text-black-50"></i></div>
+                    </div>
+
                     <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
                         <div class="d-flex flex-row"><img class="rounded" src="https://i.imgur.com/QRwjbm5.jpg" width="40">
                             <div class="ml-2"><span class="font-weight-bold d-block">{{$item['name']}}</span><span class="spec"></span></div>
@@ -54,7 +61,7 @@
                         <div class="col-md-6"><label class="credit-card-label">CVV</label><input type="text" class="form-control credit-inputs" placeholder="342"></div>
                     </div>
                     <hr class="line">
-                    <div class="d-flex justify-content-between information"><span>Subtotal</span><span>$3000.00</span></div>
+                    <div class="d-flex justify-content-between information"><span>Subtotal</span><span>{{$item['subtotal']}} .BDT </span></div>
                     <div class="d-flex justify-content-between information"><span>Shipping</span><span>$20.00</span></div>
                     <div class="d-flex justify-content-between information"><span>Total(Incl. taxes)</span><span>$3020.00</span></div><button class="btn btn-primary btn-block d-flex justify-content-between mt-3" type="button"><span>$3020.00</span><span>Checkout<i class="fa fa-long-arrow-right ml-1"></i></span></button></div>
             </div>

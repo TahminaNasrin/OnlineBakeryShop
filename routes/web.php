@@ -13,6 +13,7 @@ use App\Http\Controllers\Backend\CustomerController;
 use App\Http\Controllers\Backend\WishlistController;
 use App\Http\Controllers\Backend\CategoriesController;
 use App\Http\Controllers\Backend\OrderDetailsController;
+use App\Http\Controllers\Frontend\AboutUsController;
 use App\Http\Controllers\Frontend\CartController as FrontendCartController;
 use App\Http\Controllers\Frontend\HomeController as FrontendHomeController;
 use App\Http\Controllers\Frontend\OrderController as FrontendOrderController;
@@ -39,8 +40,12 @@ Route::post('/registration/store',[FrontendCustomerController::class,'store'])->
 Route::get('/login',[FrontendCustomerController::class,'login'])->name('customer.login');
 Route::post('/login/post',[FrontendCustomerController::class,'loginPost'])->name('customer.login.post');
 
+Route::get('/search-product',[FrontendProductController::class,'search'])->name('product.search');
+
 Route::get('/all-product',[FrontendProductController::class,'allProduct'])->name('product.all');
 Route::get('/single-product/{id}',[FrontendProductController::class,'singleProductView'])->name('single.product.view');
+
+Route::get('/about-us',[AboutUsController::class,'aboutUs'])->name('about.us');
 //cart codes
 
 Route::get('cart-view',[FrontendCartController::class,'cartView'])->name('cart.view');

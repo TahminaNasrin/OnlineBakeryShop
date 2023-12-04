@@ -8,6 +8,20 @@ use App\Http\Controllers\Controller;
 
 class ProductController extends Controller
 {
+    public function search(Request $request)
+    {
+       if($request->search)
+       {
+        //dd('Here Your Products:');
+        $products=Product::where('name','LIKE','%'.$request->search.'%')->get();
+       }else
+       {
+        $products=Product::all();
+       }
+        
+        return view('frontend.pages.search',compact('products'));
+    }
+    
     public function allProduct()
     {
         $products=Product::all();

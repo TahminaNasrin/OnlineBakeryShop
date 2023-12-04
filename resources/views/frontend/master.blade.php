@@ -31,7 +31,7 @@
                             <div class="col-lg-8">
                                 <p class="text-primary text-uppercase fw-bold mb-2">// The Best Bakery</p>
                                 <h1 class="display-1 text-light mb-4 animated slideInDown">We Bake With Passion</h1>
-                                <p class="text-light fs-5 mb-4 pb-3">Vero elitr justo clita lorem. Ipsum dolor sed stet sit diam rebum ipsum.</p>
+                                <p class="text-light fs-5 mb-4 pb-3">You can try also.</p>
                                 <a href="" class="btn btn-primary rounded-pill py-3 px-5">Read More</a>
                             </div>
                         </div>

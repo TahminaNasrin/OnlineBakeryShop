@@ -2,6 +2,13 @@
 @section('content')
 <div class="container-xxl bg-light my-6 py-6 pt-0">
         <div class="container">
+            <h1 class="display-6 mb-4">Search Your Product: </h1>
+            
+            <form action="{{route('product.search')}}" method="get" autocomplete="off">
+                <input type="text" class="form-control" placeholder="Search..." name="search">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+
             <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
                 <p class="text-primary text-uppercase mb-2">// Bakery Products</p>
                 <h1 class="display-6 mb-4">Explore Of Our Bakery Products</h1>
