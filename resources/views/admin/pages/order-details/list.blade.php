@@ -1,4 +1,4 @@
-@extends('admin.master')
+<!-- @extends('admin.master')
 @section('content')
 <h1>OrderDetails Info</h1>
 <a href="{{route('order.details.form')}}">
@@ -36,4 +36,4 @@
   </tbody>
 </table>
 
-@endsection
+@endsection -->

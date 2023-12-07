@@ -1,4 +1,4 @@
-@extends('admin.master')
+<!-- @extends('admin.master')
 @section('content')
 <form action="{{route('order.details.store')}}" method="post" autocomplete="off">
     @csrf
@@ -66,4 +66,4 @@
 
 </form>
 
-@endsection
+@endsection -->

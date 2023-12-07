@@ -12,6 +12,7 @@ class CartController extends Controller
     {
         return view('frontend.pages.cart');
     }
+
     public function addToCart($pId)
     {
         //dd($pId);
@@ -32,7 +33,7 @@ class CartController extends Controller
            
            else 
            {//add to cart
-            $newCart[$pId]=[
+            $art[$pId]=[
                 'id'=>$pId,
                 'name'=>$product->name,
                 'price'=>$product->price,
@@ -65,6 +66,14 @@ class CartController extends Controller
             notify()->success('Product added to cart successfully.');
             return redirect()->back();
         }
+
+
         return view('frontend.pages.cart');
+    }
+
+
+    public function checkout()
+    {
+        return view('frontend.pages.checkout');
     }
 }

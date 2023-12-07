@@ -55,6 +55,8 @@ Route::group(['middleware'=>'auth'],function(){
 
     Route::get('/profile',[FrontendCustomerController::class,'profile'])->name('profile.view');
     Route::get('/logout',[FrontendCustomerController::class,'logout'])->name('customer.logout');
+    Route::get('/checkout',[FrontendCartController::class,'checkout'])->name('checkout');
+    Route::post('/order-place',[FrontendOrderController::class,'orderPlace'])->name('order.place');
     Route::get('/order-now/{product_id}',[FrontendOrderController::class,'orderNow'])->name('order.now');
     Route::get('/cancel-order/{product_id}',[FrontendOrderController::class,'cancelOrder'])->name('order.cancel');
 
