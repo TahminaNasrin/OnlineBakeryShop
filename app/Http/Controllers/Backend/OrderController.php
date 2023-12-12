@@ -9,11 +9,38 @@ use Illuminate\Support\Facades\Validator;
 
 class OrderController extends Controller
 {
-    // public function list()
-    // {
-    //     $orders=Order::paginate(5);
-    //     return view('admin.pages.order.list',compact('orders'));
-    // }
+     public function list()
+     {
+         $orders=Order::paginate(5);
+        return view('admin.pages.order.list',compact('orders'));
+     }
+
+     public function approve($orderId)
+     {
+        $order=Order::find($orderId);
+        if($order)
+        {
+            $order->update([
+                'status'=>'Approved'
+            ]);
+        }
+        notify()->success('Order Approved.');
+        return redirect()->back();
+     }
+
+     public function reject($orderId)
+     {
+        $order=Order::find($orderId);
+        if($order)
+        {
+            $order->update([
+                'status'=>'Rejected'
+            ]);
+        }
+        notify()->success('Order Rejected.');
+        return redirect()->back();
+     }
+
     // public function form()
     // {
     //     return view('admin.pages.order.form');

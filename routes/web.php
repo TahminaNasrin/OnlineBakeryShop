@@ -54,10 +54,14 @@ Route::get('add-to-cart/{product_id}',[FrontendCartController::class,'addToCart'
 Route::group(['middleware'=>'auth'],function(){
 
     Route::get('/profile',[FrontendCustomerController::class,'profile'])->name('profile.view');
+    Route::get('/profile-edit/{id}',[FrontendCustomerController::class, 'profileEdit'])->name('profile.edit');
+    Route::put('/profile-update/{id}',[FrontendCustomerController::class,'update'])->name('profile.update');
+
     Route::get('/logout',[FrontendCustomerController::class,'logout'])->name('customer.logout');
     Route::get('/checkout',[FrontendCartController::class,'checkout'])->name('checkout');
+
     Route::post('/order-place',[FrontendOrderController::class,'orderPlace'])->name('order.place');
-    Route::get('/order-now/{product_id}',[FrontendOrderController::class,'orderNow'])->name('order.now');
+    Route::get('/buy-now/{product_id}',[FrontendOrderController::class,'buyNow'])->name('buy.now');
     Route::get('/cancel-order/{product_id}',[FrontendOrderController::class,'cancelOrder'])->name('order.cancel');
 
 });
@@ -100,6 +104,8 @@ Route::get('categories/form',[CategoriesController::class,'form'])->name('catego
 Route::post('/categories/store',[CategoriesController::class,'store'])->name('categories.store');
 
 Route::get('/order/list',[OrderController::class,'list'])->name('order.list');
+Route::get('/order/approve/{id}',[OrderController::class,'approve'])->name('order.approve');
+Route::get('/order/reject/{id}',[OrderController::class,'reject'])->name('order.reject');
 Route::get('/order/form',[OrderController::class,'form'])->name('order.form');
 Route::post('/order/store',[OrderController::class,'store'])->name('order.store');
 

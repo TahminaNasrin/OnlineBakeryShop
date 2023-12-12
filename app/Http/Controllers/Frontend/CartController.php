@@ -33,7 +33,7 @@ class CartController extends Controller
            
            else 
            {//add to cart
-            $art[$pId]=[
+            $cart[$pId]=[
                 'id'=>$pId,
                 'name'=>$product->name,
                 'price'=>$product->price,

@@ -10,9 +10,9 @@
                         <div class="card-title mb-4">
                             <div class="d-flex justify-content-start">
                                 <div class="image-container">
-                                    <img src="http://placehold.it/150x150" id="imgProfile" style="width: 150px; height: 150px" class="img-thumbnail" />
+                                    <img src="{{url('/uploads/'. auth()->user()->image)}}" id="imgProfile" style="width: 150px; height: 150px" class="img-thumbnail" />
                                     <div class="middle">
-                                     <a href="" class="m-t-10 waves-effect waves-dark btn btn-primary btn-md btn-rounded" data-abc="true">Edit Profile</a>
+                                     <a href="{{route('profile.edit', auth()->user()->id)}}" class="m-t-10 waves-effect waves-dark btn btn-primary btn-md btn-rounded" >Edit Profile</a>
                                     </div>
                                 </div>
                                 <div class="userData ml-3">
@@ -86,7 +86,11 @@
     <tr>
       <th scope="col">#</th>
       <th scope="col">Date</th>
-      <th scope="col">Product</th>
+      <th scope="col">User ID</th>
+      <th scope="col">Address</th>
+      <th scope="col">Receiver Mobile</th>
+      <th scope="col">Receiver Name</th>
+      <th scope="col">Receiver Email</th>
       <th scope="col">Status</th>
       <th scope="col">Action</th>
     </tr>
@@ -99,10 +103,15 @@
         <tr>
           <th scope="row">{{$order->id}}</th>
           <td>{{$order->created_at}}</td>
-          <td>{{$order->product_id}}</td>
+          <td>{{$order->user_id}}</td>
+          <td>{{$order->address}}</td>
+          <td>{{$order->receiver_mobile}}</td>
+          <td>{{$order->receiver_name}}</td>
+          <td>{{$order->receiver_email }}</td>
           <td>{{$order->status}}</td>
           <td>
             @if($order->status=='pending')
+            <a class="btn btn-warning" href="">Make Payment</a>
             <a class="btn btn-danger" href="{{route('order.cancel',$order->id)}}">Cancel Order</a>
             @endif  
         </td>
