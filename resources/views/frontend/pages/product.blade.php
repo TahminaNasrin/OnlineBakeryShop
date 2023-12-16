@@ -1,5 +1,13 @@
 @extends('frontend.master')
 @section('content')
+
+<!-- <style>
+.button-container {
+    text-align: center;
+    margin-top: 50px;
+}
+</style> -->
+
 <div class="container-xxl bg-light my-6 py-6 pt-0">
         <div class="container">
             <h1 class="display-6 mb-4">Search Your Product: </h1>
@@ -22,7 +30,7 @@
                         <div class="text-center p-4">
                             <div class="d-inline-block border border-primary rounded-pill px-3 mb-3">{{$product->price}} .BDT Per Unit</div>
                             <h3 class="mb-3"> {{$product->name}} </h3>
-                            <span>Tempor erat elitr rebum at clita dolor diam ipsum sit diam amet diam et eos</span>
+                            <span>{{$product->description}}</span>
                         </div>
                         <div class="position-relative mt-auto">
                             <img class="img-fluid" src="{{url('/uploads/'.$product->image)}}" alt="">

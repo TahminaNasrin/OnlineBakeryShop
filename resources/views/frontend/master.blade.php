@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-   @include('frontend.partials.header')
+@include('frontend.partials.header')
 
 <body>
     <!-- Spinner Start -->
@@ -11,7 +11,7 @@
     <!-- Spinner End -->
 
 
-        @include('notify::components.notify')
+    @include('notify::components.notify')
 
 
     <!-- Navbar Start -->
@@ -20,16 +20,16 @@
 
 
     <!-- Carousel Start -->
-    
-    
-   
+
+
+
     <!-- Carousel End -->
 
-  
-      @yield('content')
-   
 
-    
+
+
+
+
 
     <!-- Facts Start -->
     <!-- <div class="container-xxl py-6">
@@ -236,12 +236,12 @@
         </div>
     </div>  -->
     <!-- Service End -->
-    
+
 
     <!-- Footer Start -->
 
     @include('frontend.partials.footer')
-    
+
     <!-- Footer End -->
 
 
@@ -279,6 +279,21 @@
     <!-- Template Javascript -->
     <script src="{{url('Frontend/')}}/js/main.js"></script>
     @notifyJs
+
+
+    <script>
+        (function(window, document) {
+            var loader = function() {
+                var script = document.createElement("script"),
+                    tag = document.getElementsByTagName("script")[0];
+                script.src = "https://sandbox.sslcommerz.com/embed.min.js?" + Math.random().toString(36).substring(7);
+                tag.parentNode.insertBefore(script, tag);
+            };
+
+            window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);
+        })(window, document);
+    </script>
+
 </body>
 
 </html>
