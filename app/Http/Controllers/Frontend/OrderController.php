@@ -33,6 +33,7 @@ class OrderController extends Controller
             'receiver_mobile'=>$request->receiver_mobile,
             'receiver_name'=>$request->receiver_name,
             'receiver_email'=>$request->receiver_email,
+            'transaction_id'=>date('YmdHis'),
         ]);
         
         foreach($cart as $key=> $item)
@@ -54,24 +55,24 @@ class OrderController extends Controller
 
     }
 
-    public function payment($payment)
+    public function payment($newOrder)
     {
         //dd($payment);
         $post_data = array();
-        $post_data['total_amount'] = $payment->total_price; # You cant not pay less than 10
+        $post_data['total_amount'] = $newOrder->total_price; # You cant not pay less than 10
         $post_data['currency'] = "BDT";
-        $post_data['tran_id'] = uniqid(); // tran_id must be unique
+        $post_data['tran_id'] = $newOrder->transaction_id; // tran_id must be unique
 
         # CUSTOMER INFORMATION
-        $post_data['cus_name'] = 'Customer Name';
-        $post_data['cus_email'] = 'customer@mail.com';
+        $post_data['cus_name'] = $newOrder->reciever_name;
+        $post_data['cus_email'] = $newOrder->reciever_email;
         $post_data['cus_add1'] = 'Customer Address';
         $post_data['cus_add2'] = "";
         $post_data['cus_city'] = "";
         $post_data['cus_state'] = "";
         $post_data['cus_postcode'] = "";
         $post_data['cus_country'] = "Bangladesh";
-        $post_data['cus_phone'] = '8801XXXXXXXXX';
+        $post_data['cus_phone'] = $newOrder->reciever_mobile;
         $post_data['cus_fax'] = "";
 
         # SHIPMENT INFORMATION

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use DB;
 use Illuminate\Http\Request;
 use App\Library\SslCommerz\SslCommerzNotification;
+use App\Models\Order;
 
 class SslCommerzPaymentController extends Controller
 {
@@ -161,7 +162,8 @@ class SslCommerzPaymentController extends Controller
 
     public function success(Request $request)
     {
-        echo "Transaction is Successful";
+        //dd($request->all());
+        //echo "Transaction is Successful";
 
         $tran_id = $request->input('tran_id');
         $amount = $request->input('amount');
@@ -170,11 +172,9 @@ class SslCommerzPaymentController extends Controller
         $sslc = new SslCommerzNotification();
 
         #Check order status in order tabel against the transaction id or order id.
-        $order_details = DB::table('orders')
-            ->where('transaction_id', $tran_id)
-            ->select('transaction_id', 'status', 'currency', 'amount')->first();
+        $order_details = Order::where('transaction_id', $tran_id)->first();
 
-        if ($order_details->status == 'Pending') {
+        if ($order_details->status == 'pending') {
             $validation = $sslc->orderValidate($request->all(), $tran_id, $amount, $currency);
 
             if ($validation) {
@@ -183,11 +183,17 @@ class SslCommerzPaymentController extends Controller
                 in order table as Processing or Complete.
                 Here you can also sent sms or email for successfull transaction to customer
                 */
-                $update_product = DB::table('orders')
-                    ->where('transaction_id', $tran_id)
-                    ->update(['status' => 'Processing']);
+                $order_details->update([
+                    'payment_status'=>$request->status,
+                    'status'=>'confirm',
+                ]);
+                
+                //echo "<br >Transaction is successfully Completed";
 
-                echo "<br >Transaction is successfully Completed";
+                session()->forget('vcart');
+               notify()->success('Payment Successful & Order is Confirmed.');
+               return redirect()->route('frontend.home');
+
             }
         } else if ($order_details->status == 'Processing' || $order_details->status == 'Complete') {
             /*
