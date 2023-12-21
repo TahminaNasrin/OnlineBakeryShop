@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Models\User;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -9,6 +11,11 @@ class HomeController extends Controller
 {
     public function home(){
 
-        return view('admin.pages.home.home');
+
+        $customers=User::where('role','customer')->count();
+        $orders=Order::all()->count();
+        $pending=Order::where('status','pending')->count();
+        //$prices=Order::all('total_price')->count();
+        return view('admin.pages.home.home',compact('customers','orders','pending'));
     }
 }

@@ -82,7 +82,7 @@ Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 
 });
 
-//frontend 
+//Backtend 
 Route::group(['prefix'=>'admin'], function(){ 
 
 
