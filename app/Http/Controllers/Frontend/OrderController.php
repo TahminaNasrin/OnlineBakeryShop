@@ -11,11 +11,7 @@ use App\Library\SslCommerz\SslCommerzNotification;
 
 class OrderController extends Controller
 {
-    public function buyNow()
-    {
-        notify()->success('Order Successfull.');
-        return redirect()->back(); 
-    }
+    
     
     
     
@@ -42,6 +38,7 @@ class OrderController extends Controller
                 'order_id'=>$order->id,
                 // 'product_id'=>$key,
                 'product_id'=>$item['id'],
+                'user_id'=>$item['id'],
                 'quantity'=>$item['quantity'],
                 'subtotal'=>$item['subtotal'],
             ]);
@@ -49,30 +46,35 @@ class OrderController extends Controller
         }
         
         session()->forget('vcart');
-        notify()->success('Order placed Successfull.');
         $this->payment($order);
+
+        notify()->success("Order Place Successfull.");
         return redirect()->back();
 
     }
 
     public function payment($newOrder)
     {
-        //dd($payment);
+        # Here you have to receive all the order data to initate the payment.
+        # Let's say, your oder transaction informations are saving in a table called "orders"
+        # In "orders" table, order unique identity is "transaction_id". "status" field contain status of the transaction, "amount" is the order amount to be paid and "currency" is for storing Site Currency which will be checked with paid currency.
+
+        //dd($newOrder);
         $post_data = array();
         $post_data['total_amount'] = $newOrder->total_price; # You cant not pay less than 10
         $post_data['currency'] = "BDT";
         $post_data['tran_id'] = $newOrder->transaction_id; // tran_id must be unique
 
         # CUSTOMER INFORMATION
-        $post_data['cus_name'] = $newOrder->reciever_name;
-        $post_data['cus_email'] = $newOrder->reciever_email;
+        $post_data['cus_name'] = $newOrder->receiver_name;
+        $post_data['cus_email'] = $newOrder->receiver_email;
         $post_data['cus_add1'] = 'Customer Address';
         $post_data['cus_add2'] = "";
         $post_data['cus_city'] = "";
         $post_data['cus_state'] = "";
         $post_data['cus_postcode'] = "";
         $post_data['cus_country'] = "Bangladesh";
-        $post_data['cus_phone'] = $newOrder->reciever_mobile;
+        $post_data['cus_phone'] = $newOrder->receiver_mobile;
         $post_data['cus_fax'] = "";
 
         # SHIPMENT INFORMATION
@@ -95,8 +97,8 @@ class OrderController extends Controller
         $post_data['value_b'] = "ref002";
         $post_data['value_c'] = "ref003";
         $post_data['value_d'] = "ref004";
-
-       //dd($post_data);
+       
+        //dd($post_data);
 
         $sslc = new SslCommerzNotification();
         # initiate(Transaction Data , false: Redirect to SSLCOMMERZ gateway/ true: Show all the Payement gateway here )

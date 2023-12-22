@@ -28,8 +28,8 @@ class ProductController extends Controller
         return view('frontend.pages.product',compact('products'));
     }
 
-     public function  singleProductView($productId)
-     {
+    public function  singleProductView($productId)
+    {
         
 
         $singleProduct=Product::find($productId);
@@ -37,5 +37,7 @@ class ProductController extends Controller
         
        return view('frontend.pages.single-product-view',compact('singleProduct'));
 
-     }
+    }
+
+    
 }

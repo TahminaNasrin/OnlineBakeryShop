@@ -3,16 +3,17 @@
 namespace App\Http\Controllers\Backend;
 
 
-use App\Models\OrderDetail;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\OrderDetails;
 use Illuminate\Support\Facades\Validator;
 
 class OrderDetailsController extends Controller
 {
     public function list()
     {
-        $orderDetails=OrderDetail::paginate(5);
+        $orderDetails=OrderDetails::paginate(5);
         return view('admin.pages.order-details.list',compact('orderDetails'));
     }
     

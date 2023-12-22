@@ -2,7 +2,6 @@
 @section('content')
 <h1>Order List</h1>
 <a href="{{route('order.form')}}">
-    <button class='btn btn-success'>Add Order</button>
 </a>
 <table class="table">
   <thead class="thead-dark">

@@ -10,7 +10,7 @@ use App\Http\Controllers\Backend\ReviewController;
 use App\Http\Controllers\Backend\PaymentController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\CustomerController;
-use App\Http\Controllers\Backend\WishlistController;
+use App\Http\Controllers\Frontend\WishlistController;
 use App\Http\Controllers\Backend\CategoriesController;
 use App\Http\Controllers\Backend\OrderDetailsController;
 use App\Http\Controllers\Frontend\AboutUsController;
@@ -51,6 +51,14 @@ Route::get('/about-us',[AboutUsController::class,'aboutUs'])->name('about.us');
 
 Route::get('cart-view',[FrontendCartController::class,'cartView'])->name('cart.view');
 Route::get('add-to-cart/{product_id}',[FrontendCartController::class,'addToCart'])->name('add.to.cart');
+Route::get('/cart/delete/{id}',[FrontendCartController::class,'delete'])->name('cart.delete');
+// Route::get('decrement/{id}',[FrontendCartController::class,'decrementQuantity'])->name('quantity.decrement');
+// Route::get('increment/{id}',[FrontendCartController::class,'incrementQuantity'])->name('quantity.increment');
+
+Route::get('/wishlist/view/{id}',[WishlistController::class,'wishlistView'])->name('wishlist.view');
+Route::get('/wishlist/{id}',[WishlistController::class,'wishlist'])->name('wishlist.now');
+Route::get('/wishlist/delete/{id}',[WishlistController::class,'delete'])->name('wishlist.delete');
+
 
 Route::group(['middleware'=>'auth'],function(){
 
@@ -62,7 +70,8 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('/checkout',[FrontendCartController::class,'checkout'])->name('checkout');
 
     Route::post('/order-place',[FrontendOrderController::class,'orderPlace'])->name('order.place');
-    Route::get('/buy-now/{product_id}',[FrontendOrderController::class,'buyNow'])->name('buy.now');
+    
+
     Route::get('/cancel-order/{product_id}',[FrontendOrderController::class,'cancelOrder'])->name('order.cancel');
 
 
@@ -136,7 +145,6 @@ Route::post('/payment/store',[PaymentController::class,'store'])->name('payment.
 
 Route::get('/report/list',[ReportController::class,'list'])->name('report.list');
 Route::get('/review/list',[ReviewController::class,'list'])->name('review.list');
-Route::get('/wishlist/list',[WishlistController::class,'list'])->name('wishlist.list');
 
 Route::get('/cart/list',[CartController::class,'list'])->name('cart.list');
 Route::get('/cart/form',[CartController::class,'form'])->name('cart.form');
