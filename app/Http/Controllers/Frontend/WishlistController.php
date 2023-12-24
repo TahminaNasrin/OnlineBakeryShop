@@ -10,9 +10,9 @@ class WishlistController extends Controller
 {
 
 
-    public function wishlistView($pId)
+    public function wishlistView()
     {
-        $products=Product::find($pId);
+        $products=Product::all();
         return view('frontend.pages.wishlist',compact('products')); 
     }
 

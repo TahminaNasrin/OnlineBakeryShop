@@ -37,10 +37,12 @@ class CartController extends Controller
            {//add to cart
             $cart[$pId]=[
                 'id'=>$pId,
+                'image'=>$product->image,
                 'name'=>$product->name,
                 'price'=>$product->price,
                 'quantity'=>1,
                 'subtotal'=>1 * $product->price,
+                
             ];
 
             session()->put('vcart',$cart);
@@ -58,10 +60,12 @@ class CartController extends Controller
         else {//empty hoile
             $newCart[$pId]=[
                 'id'=>$pId,
+                'image'=>$product->image,
                 'name'=>$product->name,
                 'price'=>$product->price,
                 'quantity'=>1,
                 'subtotal'=>1 * $product->price,
+                
 
             ];
             session()->put('vcart',$newCart);
@@ -88,34 +92,56 @@ class CartController extends Controller
         return view('frontend.pages.checkout');
     }
 
+    // public function delete($id)
+    // {
+    //     dd($id);
+    //     $products=Product::find($id);
+    //     //dd($products);
+    //     if($products)
+    //     {
+    //         $products->delete();
+    //     }
+    //     notify()->success('Cart Deleted Successfully');
+
+    //     return redirect()->back();
+
+    // }
+
     public function delete($id)
     {
-        dd($id);
-        $products=Product::find($id);
-        //dd($products);
-        if($products)
-        {
-            $products->delete();
-        }
-        notify()->success('Cart Deleted Successfully');
+        // dd('hi');
+        $cart = session()->get('vcart');
+        unset($cart[$id]);
+        session()->put('vcart', $cart);
+        notify()->success('Single cart deleted successfully.');
 
         return redirect()->back();
-
     }
 
+    public function quantityDecrease($product_id)
+    {
+        $product = Product::find($product_id);
+        $cart = session()->get('vcart');
+        if (array_key_exists($product_id, $cart)) {
+            $cart[$product_id]['quantity'] = $cart[$product_id]['quantity'] - 1;
+            $cart[$product_id]['subtotal'] = $cart[$product_id]['price'] * $cart[$product_id]['quantity'];
+        }
+        session()->put('vcart', $cart);
+        return redirect()->back();
+    }
 
-    // public function decrementQuantity($cartId)
-    // {
-
-    //     $cartData=Cart::where('id', $cartId)->where('user_id',auth()->user()->id)->first();
-    //     if($cartData)
-    //     {
-    //         $cartData->decrement('quantity');
-    //         notify()->success('Quantity Decremented.');
-    //     }
-    //     else
-    //     notify()->warning('Quantity going wrong.');
-    // }
+    public function quantityIncrease($product_id)
+    {
+        $product = Product::find($product_id);
+        $cart = session()->get('vcart');
+        if (array_key_exists($product_id, $cart)) {
+            $cart[$product_id]['quantity'] = $cart[$product_id]['quantity'] + 1;
+            $cart[$product_id]['subtotal'] = $cart[$product_id]['price'] * $cart[$product_id]['quantity'];
+        }
+        session()->put('vcart', $cart);
+        return redirect()->back();
+    }
+   
 
     // public function incrementQuantity($cartId)
     // {

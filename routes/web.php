@@ -52,10 +52,13 @@ Route::get('/about-us',[AboutUsController::class,'aboutUs'])->name('about.us');
 Route::get('cart-view',[FrontendCartController::class,'cartView'])->name('cart.view');
 Route::get('add-to-cart/{product_id}',[FrontendCartController::class,'addToCart'])->name('add.to.cart');
 Route::get('/cart/delete/{id}',[FrontendCartController::class,'delete'])->name('cart.delete');
+Route::get('/cart/quantity/decrease/{id}',[FrontendCartController::class,'quantityDecrease'])->name('cart.quantity.decrease');
+Route::get('/cart/quantity/increase/{id}',[FrontendCartController::class,'quantityIncrease'])->name('cart.quantity.increase');
+
 // Route::get('decrement/{id}',[FrontendCartController::class,'decrementQuantity'])->name('quantity.decrement');
 // Route::get('increment/{id}',[FrontendCartController::class,'incrementQuantity'])->name('quantity.increment');
 
-Route::get('/wishlist/view/{id}',[WishlistController::class,'wishlistView'])->name('wishlist.view');
+Route::get('/wishlist/view/',[WishlistController::class,'wishlistView'])->name('wishlist.view');
 Route::get('/wishlist/{id}',[WishlistController::class,'wishlist'])->name('wishlist.now');
 Route::get('/wishlist/delete/{id}',[WishlistController::class,'delete'])->name('wishlist.delete');
 

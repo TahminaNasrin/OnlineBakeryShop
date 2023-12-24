@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('product_name',50);
             $table->double('product_price');
             $table->double('total_cost');
+            
             $table->timestamps();
         });
     }

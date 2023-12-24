@@ -55,16 +55,16 @@
                       </div>
 
                       <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                        <button class="btn btn-link px-2" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                        <a href="{{route('cart.quantity.decrease',$item['id'])}}" type="button" max="17" class="btn btn-link px-2" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
                           <i class="fas fa-minus"></i>
-                        </button>
+                        </a>
 
-                        <input type="text" class="qty-input form-control" maxlength="2" max="10" value="{{$item['quantity']}}">
+                        <input type="text" class="qty-input form-control" maxlength="2" min="0" max="15" value="{{$item['quantity']}}">
                         <!-- <input id="form1" min="0" name="quantity" value="2" type="number" class="form-control form-control-sm" /> -->
 
-                        <button class="btn btn-link px-2" onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                        <a href="{{route('cart.quantity.increase',$item['id'])}}" type="button" class="btn btn-link px-2" onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
                           <i class="fas fa-plus"></i>
-                        </button>
+                        </a>
                       </div>
 
                       <div class="d-flex flex-row align-items-center">
@@ -74,7 +74,7 @@
                         <div style="width: 80px;">
                           <h5 class="mb-0">= {{$item['subtotal']}} .BDT</h5>
                         </div>
-                        <a href="#" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
+                        <a href="{{route('cart.delete',$item['id'])}}" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
                       </div>
                     </div>
                   </div>

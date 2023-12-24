@@ -1,8 +1,11 @@
 @extends('frontend.master')
-@section('content')
-
 
 @include('frontend.partials.carousel')
 
+@section('product')
+
+@include('frontend.pages.product')
 
 @endsection
+
+

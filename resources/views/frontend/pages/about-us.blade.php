@@ -1,4 +1,6 @@
 @extends('frontend.master')
+
+
 @section('content')
 <div class="container">
     <div class="container-xxl py-6">
