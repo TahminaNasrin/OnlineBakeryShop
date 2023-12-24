@@ -142,6 +142,12 @@ class CartController extends Controller
         return redirect()->back();
     }
    
+    public function removeWholeCart()
+    {
+        session()->forget('vcart');
+        notify()->success('Removed Whole Cart.');
+        return redirect()->back();
+    }
 
     // public function incrementQuantity($cartId)
     // {
