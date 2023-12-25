@@ -9,7 +9,9 @@
             <div class="navbar-nav mx-auto p-4 p-lg-0">
                 <a href="{{route('frontend.home')}}" class="nav-item nav-link active">Home</a>
                 <a href="{{route('about.us')}}" class="nav-item nav-link">About</a>
-                <a href="{{route('wishlist.view')}}" class="nav-item nav-link">Wishlist</a>
+                @auth
+                <a href="{{route('wishlist.view',auth()->user()->id)}}" class="nav-item nav-link">Wishlist</a>
+                @endauth
                 <a href="{{route('product.all')}}" class="nav-item nav-link">Products</a>
                 <!-- <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>

@@ -59,9 +59,11 @@ Route::get('whole/cart/remove/',[FrontendCartController::class,'removeWholeCart'
 // Route::get('decrement/{id}',[FrontendCartController::class,'decrementQuantity'])->name('quantity.decrement');
 // Route::get('increment/{id}',[FrontendCartController::class,'incrementQuantity'])->name('quantity.increment');
 
-Route::get('/wishlist/view/',[WishlistController::class,'wishlistView'])->name('wishlist.view');
-Route::get('/wishlist/{id}',[WishlistController::class,'wishlist'])->name('wishlist.now');
-Route::get('/wishlist/delete/{id}',[WishlistController::class,'delete'])->name('wishlist.delete');
+Route::get('/wishlist/view/{user_id}',[WishlistController::class,'wishlistView'])->name('wishlist.view');
+ Route::get('/add-to-wishlist/{product_id}', [WishlistController::class, 'store'])->name('add.to.wishlist');
+ Route::get('/remove-wishlist/{wishlist_id}', [WishlistController::class, 'remove'])->name('remove.Wishlist');
+//Route::get('/wishlist/{id}',[WishlistController::class,'wishlist'])->name('wishlist.now');
+//Route::get('/wishlist/delete/{id}',[WishlistController::class,'delete'])->name('wishlist.delete');
 
 
 Route::group(['middleware'=>'auth'],function(){

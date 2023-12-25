@@ -43,7 +43,7 @@
                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                 <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{route('add.to.cart',$product->id)}}">Add to cart</a>
                                 
-                                <a type="button" class="btn btn-outline-dark mt-auto"   href="{{route('wishlist.now',$product->id)}}"><i class="bi bi-heart"></i></a>
+                                <a type="button" class="btn btn-outline-dark mt-auto"   href="{{route('add.to.wishlist',$product->id)}}"><i class="bi bi-heart"></i></a>
                             
                             </div>
                                 
