@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Models\User;
 use App\Models\Order;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -17,8 +18,9 @@ class CustomerController extends Controller
 
     public function profile()
     {
+        $product=Product::where('id')->get();
         $orders = Order::where('user_id', auth()->user()->id)->get();
-        return view('frontend.pages.profile', compact('orders'));
+        return view('frontend.pages.profile', compact('orders','product'));
     }
 
     
@@ -108,4 +110,12 @@ class CustomerController extends Controller
         notify()->success('Logout Successful.');
         return redirect()->back();
     }
+
+    public function orderSummary($orderId)
+    {
+        $order=Order::find('$orderId');
+        return view('frontend.pages.order-summary',compact('order'));
+    }
+
+
 }

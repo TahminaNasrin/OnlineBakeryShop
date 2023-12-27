@@ -56,14 +56,11 @@ Route::get('/cart/quantity/decrease/{id}',[FrontendCartController::class,'quanti
 Route::get('/cart/quantity/increase/{id}',[FrontendCartController::class,'quantityIncrease'])->name('cart.quantity.increase');
 Route::get('whole/cart/remove/',[FrontendCartController::class,'removeWholeCart'])->name('whole.cart.remove');
 
-// Route::get('decrement/{id}',[FrontendCartController::class,'decrementQuantity'])->name('quantity.decrement');
-// Route::get('increment/{id}',[FrontendCartController::class,'incrementQuantity'])->name('quantity.increment');
 
 Route::get('/wishlist/view/{user_id}',[WishlistController::class,'wishlistView'])->name('wishlist.view');
- Route::get('/add-to-wishlist/{product_id}', [WishlistController::class, 'store'])->name('add.to.wishlist');
- Route::get('/remove-wishlist/{wishlist_id}', [WishlistController::class, 'remove'])->name('remove.Wishlist');
-//Route::get('/wishlist/{id}',[WishlistController::class,'wishlist'])->name('wishlist.now');
-//Route::get('/wishlist/delete/{id}',[WishlistController::class,'delete'])->name('wishlist.delete');
+Route::get('/add-to-wishlist/{product_id}', [WishlistController::class, 'store'])->name('add.to.wishlist');
+Route::get('/remove-wishlist/{wishlist_id}', [WishlistController::class, 'remove'])->name('remove.Wishlist');
+//Route::get('/buy-now/{id}',[FrontendOrderController::class,'buyNow'])->name('buy.now');
 
 
 Route::group(['middleware'=>'auth'],function(){
@@ -71,6 +68,7 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('/profile',[FrontendCustomerController::class,'profile'])->name('profile.view');
     Route::get('/profile-edit/{id}',[FrontendCustomerController::class, 'profileEdit'])->name('profile.edit');
     Route::put('/profile-update/{id}',[FrontendCustomerController::class,'update'])->name('profile.update');
+    Route::get('/profile/order-summary/{id}',[FrontendCustomerController::class, 'orderSummary'])->name('profile.order.summary');
 
     Route::get('/logout',[FrontendCustomerController::class,'logout'])->name('customer.logout');
     Route::get('/checkout',[FrontendCartController::class,'checkout'])->name('checkout');

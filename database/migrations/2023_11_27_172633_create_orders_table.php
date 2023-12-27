@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
+            $table->foreignId('product_id')->constrained();
+            $table->string('product_name');
             $table->string('status')->default('pending');
             $table->double('total_price')->default(0.0);
             $table->string('payment_method')->default('cod');

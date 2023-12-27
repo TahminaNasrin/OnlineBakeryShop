@@ -2,14 +2,13 @@
 @section('content')
 <h1>Product Categories list</h1>
 <a href="{{route('categories.form')}}">
-    <button class='btn btn-success'>Add Product</button>
+    <button class='btn btn-success'>Add Product Category</button>
 </a>
 <table class="table">
   <thead class="thead-dark">
     <tr>
       <th scope="col">#</th>
       <th scope="col">Name</th>
-      <th scope="col">Quantity</th>
       <th scope="col">Status</th>
       <th scope="col">Action</th>
     </tr>
@@ -20,7 +19,6 @@
     <tr>
       <th scope="row">{{$key+1}}</th>
       <td>{{$category->name}}</td>
-      <td>{{$category->quantity}}</td>
       <td>{{$category->status}}</td>
       <td>
         <a href="{{route('categories.edit',$category->id)}}" class="btn btn-success">Edit</a>

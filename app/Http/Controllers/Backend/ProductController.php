@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -17,7 +18,8 @@ class ProductController extends Controller
 
     public function form()
     {
-        return view('admin.pages.product.form');
+        $categories=Category::all();
+        return view('admin.pages.product.form',compact('categories'));
     }
 
     public function store(Request $request)
@@ -25,7 +27,7 @@ class ProductController extends Controller
         //dd($request->all());
        $valided=Validator::make($request->all(),[
         'name'=>'required',
-        'category_id'=>'required',
+        'category_name'=>'required',
         'price'=>'required',
         'stock'=>'required',
 
@@ -47,7 +49,7 @@ class ProductController extends Controller
 
         Product::create([
             'name'=>$request->name,
-            'category_id'=>$request->category_id,
+            'category_name'=>$request->category_name,
             'price'=>$request->price,
             'stock'=>$request->stock,
             'description'=>$request->description,

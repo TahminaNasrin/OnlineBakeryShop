@@ -13,12 +13,14 @@
   </div>
 
   <div class="form-group">
-    <label for="exampleFormControlSelect1">Category ID</label>
-    <input type="numeric" class="form-control" name="category_id" id="exampleFormControlSelect1" placeholder="Enter Product Type"required>
-    </input>
-    @error('category_id')
-  <div class="alert alert-danger">{{$message}}</div>
-  @enderror
+    <label for="">Select Category:</label>
+   <select required class="form-control" name="category_name" id="">
+
+    @foreach ($categories as $category )
+    <option value="{{$category->name}}">{{$category->name}}</option>
+    @endforeach
+   
+   </select>
   </div>
 
   <div class="form-group">

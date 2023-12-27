@@ -80,13 +80,14 @@
         </div>
     </div>
 
+
+    <a class="btn btn-warning" href="">Order List</a>
     <hr>
     <table class="table">
   <thead>
     <tr>
       <th scope="col">#</th>
       <th scope="col">Date</th>
-      <th scope="col">User ID</th>
       <th scope="col">Address</th>
       <th scope="col">Receiver Mobile</th>
       <th scope="col">Receiver Name</th>
@@ -103,15 +104,14 @@
         <tr>
           <th scope="row">{{$order->id}}</th>
           <td>{{$order->created_at}}</td>
-          <td>{{$order->user_id}}</td>
           <td>{{$order->address}}</td>
           <td>{{$order->receiver_mobile}}</td>
           <td>{{$order->receiver_name}}</td>
           <td>{{$order->receiver_email }}</td>
           <td>{{$order->status}}</td>
           <td>
-            @if($order->status=='pending')
-            <a class="btn btn-warning" href="">Make Payment</a>
+            @if($order->status=='pending'||'confirm')
+            <a class="btn btn-warning" href="{{route('profile.order.summary',$order->id)}}">Order Summary</a>
             <a class="btn btn-danger" href="{{route('order.cancel',$order->id)}}">Cancel Order</a>
             @endif  
         </td>
@@ -123,6 +123,6 @@
     
   </tbody>
 </table>
-    
+
 
 @endsection

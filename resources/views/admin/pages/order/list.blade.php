@@ -9,6 +9,9 @@
       <th scope="col">#</th>
       <th scope="col">Date</th>
       <th scope="col">User Id</th>
+      <th scope="col">Product Name</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Total Amount</th>
       <th scope="col">Address</th>
       <th scope="col">Reciever Mobile</th>
       <th scope="col">Reciever Name</th>
@@ -21,8 +24,11 @@
      @foreach ($orders as $key=>$order)
     <tr>
       <th scope="row">{{$key+1}}</th>
-      <td>{{$order->date}}</td>
+      <td>{{$order->created_at}}</td>
       <td>{{$order->user_id}}</td>
+      <td>{{$order->Product_name}}</td>
+      <td>{{$order->quantity}}</td>
+      <td>{{$order->subtotal}}</td>
       <td>{{$order->address}}</td>
       <td>{{$order->receiver_mobile}}</td>
       <td>{{$order->receiver_name}}</td>
