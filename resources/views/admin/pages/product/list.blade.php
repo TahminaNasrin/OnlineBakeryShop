@@ -1,5 +1,6 @@
 @extends('admin.master')
 @section('content')
+<div class="container-fluid px-4">
 <h1>Product List</h1>
 <a href="{{route('product.form')}}">
     <button class='btn btn-success'>Add Product</button>
@@ -28,12 +29,12 @@
       <td>{{$product->stock}}</td>
       <td>{{$product->description}}</td>
       <td>
-         <img  width="8%" src="{{url('/uploads/'.$product->image)}}" alt="">
+         <img  width="12%" src="{{url('/uploads/'.$product->image)}}" alt="">
       </td>
       <td>{{$product->status}}</td>
       <td>
-        <a href=" " class="btn btn-success">Edit</a>
-        <a href=" " class="btn btn-danger">Delete</a>
+        <a href="{{route('product.edit',$product->id)}}" class="btn btn-success">Edit</a>
+        <a href="{{route('product.delete',$product->id)}}" class="btn btn-danger">Delete</a>
         <a class="btn btn-primary">View</a>
      </td>
     </tr>
@@ -41,5 +42,5 @@
     @endforeach
   </tbody>
 </table>
-
+</div>
 @endsection

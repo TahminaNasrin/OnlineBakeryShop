@@ -18,8 +18,10 @@ class CustomerController extends Controller
 
     public function profile()
     {
+        //$products=Product::all();
         $product=Product::where('id')->get();
-        $orders = Order::where('user_id', auth()->user()->id)->get();
+         $orders = Order::where('user_id', auth()->user()->id)->get();
+        //$orders = Order::with('product')->where('user_id', auth()->user()->id)->get();
         return view('frontend.pages.profile', compact('orders','product'));
     }
 

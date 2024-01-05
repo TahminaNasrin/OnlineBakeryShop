@@ -21,7 +21,7 @@
 
     <!-- Carousel Start -->
 
-    
+   
 
     <!-- Carousel End -->
 
@@ -32,43 +32,7 @@
     
 
     <!-- Facts Start -->
-    <!-- <div class="container-xxl py-6">
-        <div class="container">
-            <div class="row g-4">
-                <div class="col-lg-3 col-md-6 wow fadeIn" data-wow-delay="0.1s">
-                    <div class="fact-item bg-light rounded text-center h-100 p-5">
-                        <i class="fa fa-certificate fa-4x text-primary mb-4"></i>
-                        <p class="mb-2">Years Experience</p>
-                        <h1 class="display-5 mb-0" data-toggle="counter-up">50</h1>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeIn" data-wow-delay="0.3s">
-                    <div class="fact-item bg-light rounded text-center h-100 p-5">
-                        <i class="fa fa-users fa-4x text-primary mb-4"></i>
-                        <p class="mb-2">Skilled Professionals</p>
-                        <h1 class="display-5 mb-0" data-toggle="counter-up">175</h1>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeIn" data-wow-delay="0.5s">
-                    <div class="fact-item bg-light rounded text-center h-100 p-5">
-                        <i class="fa fa-bread-slice fa-4x text-primary mb-4"></i>
-                        <p class="mb-2">Total Products</p>
-                        <h1 class="display-5 mb-0" data-toggle="counter-up">135</h1>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeIn" data-wow-delay="0.7s">
-                    <div class="fact-item bg-light rounded text-center h-100 p-5">
-                        <i class="fa fa-cart-plus fa-4x text-primary mb-4"></i>
-                        <p class="mb-2">Order Everyday</p>
-                        <h1 class="display-5 mb-0" data-toggle="counter-up">9357</h1>
-                    </div>
-                </div>
-            </div>
-
-
-            
-        </div>
-    </div>-->
+    
     <!-- Facts End -->
 
 
@@ -250,13 +214,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                    &copy; <a href="#">Your Site Name</a>, All Right Reserved.
+                    &copy; <a href="#">Online Bakery Shop</a>, All Right Reserved.
                 </div>
-                <div class="col-md-6 text-center text-md-end">
-                    <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                    Designed By <a href="https://htmlcodex.com">HTML Codex</a>
-                    <br>Distributed By: <a class="border-bottom" href="https://themewagon.com" target="_blank">ThemeWagon</a>
-                </div>
+               
             </div>
         </div>
     </div>

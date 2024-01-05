@@ -33,7 +33,7 @@
                             <span>{{$product->description}}</span>
                         </div>
                         <div class="position-relative mt-auto">
-                            <img class="img-fluid" src="{{url('/uploads/'.$product->image)}}" alt="">
+                            <img class="img-fluid" src="{{url('/uploads/'.$product->image)}}" alt="" style="width: 400px; height: 200px;">
                             <div class="product-overlay">
                                 <a class="btn btn-lg-square btn-outline-light rounded-circle" href="{{route('single.product.view',$product->id)}}"><i class="fa fa-eye text-primary"></i></a>
                             </div>

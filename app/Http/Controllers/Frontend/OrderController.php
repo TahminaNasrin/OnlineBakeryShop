@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Models\User;
 use App\Models\Order;
 use App\Models\OrderDetails;
 use Illuminate\Http\Request;
@@ -18,7 +19,7 @@ class OrderController extends Controller
     public function orderPlace(Request $request)
     {
         //dd($request->all());
-
+        //$productId = $request->input('product_id');
         $cart=session()->get('vcart');
         
         $order=Order::create([
@@ -30,6 +31,7 @@ class OrderController extends Controller
             'receiver_name'=>$request->receiver_name,
             'receiver_email'=>$request->receiver_email,
             'transaction_id'=>date('YmdHis'),
+            'delivery_men_name'=>$request->delivery_men_name,
         ]);
         
         foreach($cart as $key=> $item)
@@ -37,12 +39,13 @@ class OrderController extends Controller
             OrderDetails::create([
                 'order_id'=>$order->id,
                 // 'product_id'=>$key,
-                'product_id'=>$item['id'],
-                'user_id'=>$item['id'],
+                'product_name'=>$item['name'],
+                'user_id'=>auth()->user()->id,
+                'user_name'=>auth()->user()->name,
                 'quantity'=>$item['quantity'],
                 'subtotal'=>$item['subtotal'],
             ]);
-
+            
         }
         
         session()->forget('vcart');
@@ -61,7 +64,7 @@ class OrderController extends Controller
 
         //dd($newOrder);
         $post_data = array();
-        $post_data['total_amount'] = $newOrder->total_price; # You cant not pay less than 10
+        $post_data['total_amount'] = $newOrder->total_price+80; # You cant not pay less than 10
         $post_data['currency'] = "BDT";
         $post_data['tran_id'] = $newOrder->transaction_id; // tran_id must be unique
 
@@ -125,4 +128,5 @@ class OrderController extends Controller
         notify()->success('Order Cancelled');
        return redirect()->back();
     }
+
 }

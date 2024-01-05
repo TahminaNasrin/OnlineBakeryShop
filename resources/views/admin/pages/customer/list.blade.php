@@ -1,5 +1,6 @@
 @extends('admin.master')
 @section('content')
+<div class="container-fluid px-4">
 <h1>Customer List</h1>
 <!-- <a href="{{route('customer.form')}}">
     <button class='btn btn-success'>Add Customers</button>
@@ -30,7 +31,7 @@
     @endforeach
   </tbody>
 </table>
-
+</div>
 
 
 @endsection

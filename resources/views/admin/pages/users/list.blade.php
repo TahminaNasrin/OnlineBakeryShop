@@ -1,5 +1,6 @@
 @extends('admin.master')
 @section('content')
+<div class="container-fluid px-4">
 <h1>Users Info</h1>
 <a href="{{route('users.form')}}">
    <button class='btn btn-success'>Add New User</button>
@@ -23,18 +24,18 @@
         <td>{{$user->role}}</td>
         <td>{{$user->email}}</td>
         <td>
-          <img style="border-radius: 60px;" width="8%" src="{{url('/uploads/'.$user->image)}}" alt="">
+          <img style="border-radius: 60px;" width="10%" src="{{url('/uploads/'.$user->image)}}" alt="">
         </td>
         
         <td>
-          <a class="btn btn-success" href="">View</a>
-          <a class="btn btn-warning" href="">Edit</a>
-          <a  class="btn btn-danger"href="">Delete</a>
+          <!-- <a class="btn btn-success" href="">View</a>
+          <a class="btn btn-warning" href="">Edit</a> -->
+          <a  class="btn btn-danger"href="{{route('users.delete',$user->id)}}">Delete</a>
         </td>
      </tr>
    @endforeach
 
   </tbody>
 </table>
-
+</div>
 @endsection

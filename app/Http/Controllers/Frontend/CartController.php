@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Frontend;
 use App\Models\Cart;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class CartController extends Controller
 {
@@ -15,60 +17,62 @@ class CartController extends Controller
         return view('frontend.pages.cart');
     }
 
-    public function addToCart($pId)
+    public function addToCart(Request $request, $pId)
     {
         //dd($pId);
 
-        $product=Product::find($pId);
-        $cart=session()->get('vcart');
-        if($cart)//not empty
-        {
-           if(array_key_exists($pId,$cart)){//yes
-                //quantity update
-                $cart[$pId]['quantity']=$cart[$pId]['quantity'] + 1;
-                $cart[$pId]['subtotal']=$cart[$pId]['quantity'] * $cart[$pId]['price'];
 
-                session()->put('vcart',$cart);
-                notify()->success('Quantity updated.');
-                return redirect()->back();
-           }
-           
-           else 
-           {//add to cart
-            $cart[$pId]=[
-                'id'=>$pId,
-                'image'=>$product->image,
-                'name'=>$product->name,
-                'price'=>$product->price,
-                'quantity'=>1,
-                'subtotal'=>1 * $product->price,
-                
-            ];
+        $product = Product::find($pId);
+        $cart = session()->get('vcart');
 
-            session()->put('vcart',$cart);
-            notify()->success('Product added to cart successfully.');
-            return redirect()->back();
 
-           }
-            
+        // Validate quantity between 1 and 10
+        $quantity = $request->input('quantity', 1);
+
+        if ($quantity < 1 || $quantity > 10) {
+            notify()->error('Quantity must be between 1 and 10.');
             return redirect()->back();
         }
 
-        
+        if ($cart) //not empty
+        {
+            if (array_key_exists($pId, $cart)) { //yes
+                //quantity update
+                $cart[$pId]['quantity'] = $cart[$pId]['quantity'] + 1;
+                $cart[$pId]['subtotal'] = $cart[$pId]['quantity'] * $cart[$pId]['price'];
 
+                session()->put('vcart', $cart);
+                notify()->success('Quantity updated.');
+                return redirect()->back();
+            } else { //add to cart
+                $cart[$pId] = [
+                    'id' => $pId,
+                    'image' => $product->image,
+                    'name' => $product->name,
+                    'price' => $product->price,
+                    'quantity' => 1,
+                    'subtotal' => 1 * $product->price,
 
-        else {//empty hoile
-            $newCart[$pId]=[
-                'id'=>$pId,
-                'image'=>$product->image,
-                'name'=>$product->name,
-                'price'=>$product->price,
-                'quantity'=>1,
-                'subtotal'=>1 * $product->price,
-                
+                ];
+
+                session()->put('vcart', $cart);
+                notify()->success('Product added to cart successfully.');
+                return redirect()->back();
+            }
+
+            return redirect()->back();
+        } else { //empty hoile
+            $newCart[$pId] = [
+                'id' => $pId,
+                'image' => $product->image,
+                'name' => $product->name,
+                'price' => $product->price,
+                'quantity' => 1,
+                'subtotal' => 1 * $product->price,
+
 
             ];
-            session()->put('vcart',$newCart);
+            session()->put('vcart', $newCart);
             notify()->success('Product added to cart successfully.');
             return redirect()->back();
         }
@@ -83,7 +87,11 @@ class CartController extends Controller
         // }
 
 
-        return view('frontend.pages.cart',compact('products'));
+
+
+
+
+        return view('frontend.pages.cart', compact('products'));
     }
 
 
@@ -92,24 +100,11 @@ class CartController extends Controller
         return view('frontend.pages.checkout');
     }
 
-    // public function delete($id)
-    // {
-    //     dd($id);
-    //     $products=Product::find($id);
-    //     //dd($products);
-    //     if($products)
-    //     {
-    //         $products->delete();
-    //     }
-    //     notify()->success('Cart Deleted Successfully');
 
-    //     return redirect()->back();
-
-    // }
 
     public function delete($id)
     {
-        // dd('hi');
+        // dd($id);
         $cart = session()->get('vcart');
         unset($cart[$id]);
         session()->put('vcart', $cart);
@@ -120,10 +115,11 @@ class CartController extends Controller
 
     public function quantityDecrease($product_id)
     {
-        $product = Product::find($product_id);
+        // $product = Product::find($product_id);
         $cart = session()->get('vcart');
         if (array_key_exists($product_id, $cart)) {
-            $cart[$product_id]['quantity'] = $cart[$product_id]['quantity'] - 1;
+            //quantity decrease range
+            $cart[$product_id]['quantity'] = max(1, $cart[$product_id]['quantity'] - 1);
             $cart[$product_id]['subtotal'] = $cart[$product_id]['price'] * $cart[$product_id]['quantity'];
         }
         session()->put('vcart', $cart);
@@ -132,33 +128,21 @@ class CartController extends Controller
 
     public function quantityIncrease($product_id)
     {
-        $product = Product::find($product_id);
+        //$product = Product::find($product_id);
         $cart = session()->get('vcart');
         if (array_key_exists($product_id, $cart)) {
-            $cart[$product_id]['quantity'] = $cart[$product_id]['quantity'] + 1;
+            //quantity increase
+            $cart[$product_id]['quantity'] = min(10, $cart[$product_id]['quantity'] + 1);
             $cart[$product_id]['subtotal'] = $cart[$product_id]['price'] * $cart[$product_id]['quantity'];
         }
         session()->put('vcart', $cart);
         return redirect()->back();
     }
-   
+
     public function removeWholeCart()
     {
         session()->forget('vcart');
         notify()->success('Removed Whole Cart.');
         return redirect()->back();
     }
-
-    // public function incrementQuantity($cartId)
-    // {
-
-    //     $cartData=Cart::where('id', $cartId)->where('user_id',auth()->user()->id)->first();
-    //     if($cartData)
-    //     {
-    //         $cartData->increment('quantity');
-    //         notify()->success('Quantity Decremented.');
-    //     }
-    //     else
-    //     notify()->warning('Quantity going wrong.');
-    // }
 }

@@ -2,9 +2,9 @@
 @section('content')
 <div class="container">
     <div class="row g-4">
-        <h1 class="display-6 mb-4"> Searching Result: </h1>
-        @if($products->count()>0)
-        @foreach ($products as $product)
+        
+        @if($productsUnderCategory->count()>0)
+        @foreach ($productsUnderCategory as $product)
         <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
             <div class="product-item d-flex flex-column bg-white rounded overflow-hidden h-100">
                 <a href="{{route('single.product.view',$product->id)}}">
@@ -36,9 +36,7 @@
         </div>
         @endforeach
         @else
-        <div class="text-center p-4">
-            <h1>Not found any products!</h1>
-        </div>
+        <h1>Not found any products!</h1>
         @endif
     </div>
 </div>

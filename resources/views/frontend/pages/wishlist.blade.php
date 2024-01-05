@@ -53,8 +53,9 @@
 									<label class="form-check-label" for="chechboxTwo"></label>
 								</div>
 							</td>
+
 							<td class="align-middle">
-								<a href="#"><img src="{{url('/uploads/')}}" class="icon-shape icon-xxl" alt="product image"></a>
+								<a href="#"><img src="{{url('/uploads/'.$item->product->image)}}" class="icon-shape icon-xxl" alt="product image" style="width: 65px;"></a>
 							</td>
 							<td class="align-middle">
 								<div>
@@ -65,7 +66,7 @@
 							<td class="align-middle">{{$item->product->price}}</td>
 							<td class="align-middle">{{$item->product->status}}</td>
 							<td class="align-middle">
-								<a href="{{route('add.to.cart',$item->id)}}" type="button" class="btn btn-primary btn-sm">Add to Cart</a>
+								<a href="{{route('add.to.cart',$item->product->id)}}" type="button" class="btn btn-primary btn-sm">Add to Cart</a>
 							</td>
 							<td class="align-middle">
 								<a href="{{route('remove.Wishlist',$item->id)}}" class="text-muted" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Delete" data-bs-original-title="Delete">

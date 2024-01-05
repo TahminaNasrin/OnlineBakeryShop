@@ -24,12 +24,12 @@
                         <div class="span1"></div>
                         <div class="col-md-6 col-xs-12">
                             <strong> Name:</strong>
-                            <input type="text" name="name" class="form-control" value="{{auth()->user()->name}}" />
+                            <input type="string" name="name" class="form-control" value="{{auth()->user()->name}}" />
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-md-12"><strong>Email:</strong></div>
-                        <div class="col-md-12"><input type="text" name="email_address" class="form-control" value="{{auth()->user()->email}}" /></div>
+                        <div class="col-md-12"><input type="email" name="email_address" class="form-control" value="{{auth()->user()->email}}" /></div>
                     </div>
                     <div class="form-group">
                         <div class="col-md-12"><strong>Address:</strong></div>
@@ -40,19 +40,19 @@
                     <div class="form-group">
                         <div class="col-md-12"><strong>Receiver Mobile:</strong></div>
                         <div class="col-md-12">
-                            <input type="text" name="receiver_mobile" class="form-control" value="" />
+                            <input type="integer" name="receiver_mobile" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-md-12"><strong>Receiver Name:</strong></div>
                         <div class="col-md-12">
-                            <input type="text" name="receiver_name" class="form-control" value="" />
+                            <input type="string" name="receiver_name" class="form-control" value="" />
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-md-12"><strong>Receiver Email:</strong></div>
                         <div class="col-md-12">
-                            <input type="text" name="receiver_email" class="form-control" value="" />
+                            <input type="email" name="receiver_email" class="form-control" value="" />
                         </div>
                     </div>
                     

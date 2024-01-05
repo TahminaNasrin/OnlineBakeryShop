@@ -1,5 +1,6 @@
 @extends('admin.master')
 @section('content')
+<div class="container-fluid px-4">
 <h1>Cart List</h1>
 <a href="{{route('cart.form')}}">
     <button class='btn btn-success'>Add new Cart</h1></button>
@@ -29,4 +30,5 @@
     @endforeach
   </tbody>
 </table>
+</div>
 @endsection

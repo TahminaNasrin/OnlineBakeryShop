@@ -3,7 +3,7 @@
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
                             <a class="nav-link" href="{{route('admin.dashboard')}}">
-                                <div class="sb-nav-link-icon"><i class="bi bi-house"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
                            
@@ -13,7 +13,7 @@
                             </a>
 
                             <a class="nav-link" href="{{route('users.list')}}">
-                                <div class="sb-nav-link-icon"><i class="bi bi-people"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Users
                            </a>
 
@@ -27,10 +27,10 @@
                                 Product Categories
                             </a>
 
-                            <a class="nav-link" href="{{route('cart.list')}}">
+                            <!-- <a class="nav-link" href="">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Cart
-                            </a>
+                            </a> -->
 
                             <a class="nav-link" href="{{route('order.list')}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
@@ -42,18 +42,13 @@
                                 Order Details
                             </a>
                             
-                            <a class="nav-link" href="{{route('payment.list')}}">
+                            <a class="nav-link" href="{{route('deliveryMan.list')}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Payment
+                                DeliveryMan Info
                             </a>
 
                             <a class="nav-link" href="{{route('report.list')}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                Report
-                            </a>
-
-                            <a class="nav-link" href="{{route('review.list')}}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Review
                             </a>
                 </nav>

@@ -8,21 +8,22 @@
 </head>
 
 <body>
+
   @extends('admin.master')
   @section('content')
 
   <div class="container bg-light col-md-5 pd-4 py-3 card shadow">
-
-
-    <form action="{{route('DeliveryMan.info.store')}}" method="post" autocomplete="off">
+    <form action="{{route('deliveryMan.update',$orders->id)}}" method="post" autocomplete="off">
       @csrf
+      @method('put')
+
 
       <div class="form-group">
         <label for="">Select DeliveryMan:</label>
         <select required class="form-control" name="delivery_men_name" id="">
 
-          @foreach ($deliveryMans as $delivery )
-          <option type="string" value="{{$delivery->id}}">{{$delivery->name}}</option>
+          @foreach ($deliveryMen as $delivery )
+          <option type="string" @if($orders->delivery_men_name==$delivery->name) selected @endif value="{{$delivery->name}} ({{$delivery->mobile_no}})">{{$delivery->name}} ({{$delivery->mobile_no}})</option>
           @endforeach
 
         </select>

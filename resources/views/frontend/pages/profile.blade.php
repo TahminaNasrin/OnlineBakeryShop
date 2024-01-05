@@ -1,7 +1,10 @@
 @extends('frontend.master')
 @section('content')
 
+
+
 <div class="container">
+    
         <div class="row">
             <div class="col-12">
                 <div class="card">
@@ -28,12 +31,7 @@
 
                         <div class="row">
                             <div class="col-12">
-                                <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
-                                    <li class="nav-item">
-                                        <a class="nav-link active" id="basicInfo-tab" data-toggle="tab" href="#basicInfo" role="tab" aria-controls="basicInfo" aria-selected="true">Basic Info</a>
-                                    </li>
-                                   
-                                </ul>
+                                
                                 <div class="tab-content ml-1" id="myTabContent">
                                     <div class="tab-pane fade show active" id="basicInfo" role="tabpanel" aria-labelledby="basicInfo-tab">
                                         
@@ -80,14 +78,16 @@
         </div>
     </div>
 
-
-    <a class="btn btn-warning" href="">Order List</a>
+    
+    <a class="btn btn-warning" href="">Invoice List</a>
+    <h1>Order list</h1>
     <hr>
     <table class="table">
   <thead>
     <tr>
       <th scope="col">#</th>
       <th scope="col">Date</th>
+      <th scope="col">Product Id</th>
       <th scope="col">Address</th>
       <th scope="col">Receiver Mobile</th>
       <th scope="col">Receiver Name</th>
@@ -104,6 +104,7 @@
         <tr>
           <th scope="row">{{$order->id}}</th>
           <td>{{$order->created_at}}</td>
+          <td>{{ $order->user->name }}</td>
           <td>{{$order->address}}</td>
           <td>{{$order->receiver_mobile}}</td>
           <td>{{$order->receiver_name}}</td>

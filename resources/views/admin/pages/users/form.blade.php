@@ -1,59 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+</head>
+<body>
+
+
 @extends('admin.master')
 @section('content')
 
-<h1>Create New User</h1>
 
-<form action="{{route('users.store')}}" method="post"  enctype="multipart/form-data"  autocomplete="off">
+<div class="container bg-light col-md-5 pd-4 py-3 card shadow">
+  <h1>Create New User</h1>
+  
+  <form action="{{route('users.store')}}" method="post" enctype="multipart/form-data" autocomplete="off">
     @csrf
 
     <div class="form-group">
-    <label for="exampleFormControlSelect1">User Name</label>
-    <input type="string" class="form-control" name="user_name" id="exampleFormControlSelect1" placeholder="Enter User Name " required >
+      <label for="exampleFormControlSelect1">User Name</label>
+      <input type="string" class="form-control" name="user_name" id="exampleFormControlSelect1" placeholder="Enter User Name " required>
 
-    @error('user_name')
-  <div class="alert alert-danger">{{$message}}</div>
-  @enderror
+      @error('user_name')
+      <div class="alert alert-danger">{{$message}}</div>
+      @enderror
 
-  <div class="form-group">
-    <label for="exampleFormControlSelect1">Role</label>
-    <input type="string" class="form-control" name="role" id="exampleFormControlSelect1" placeholder=" " required >
+      <div class="form-group">
+        <label for="exampleFormControlSelect1">Role</label>
+        <input type="string" class="form-control" name="role" id="exampleFormControlSelect1" placeholder=" " required>
 
-    @error('role')
-  <div class="alert alert-danger">{{$message}}</div>
-  @enderror
-
-
-    <div class="form-group">
-    <label for="exampleFormControlSelect1">Email</label>
-    <input type="string" class="form-control" name="user_email" id="exampleFormControlSelect1" placeholder="Enter User Email" required >
-
-    @error('user_email')
-  <div class="alert alert-danger">{{$message}}</div>
-  @enderror
-
-  </div>
+        @error('role')
+        <div class="alert alert-danger">{{$message}}</div>
+        @enderror
 
 
-  <div class="form-group">
-    <label for="exampleFormControlSelect1">Password</label>
-    <input type="string" class="form-control" name="user_password" id="exampleFormControlSelect1" placeholder="Enter User Password" required>
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Email</label>
+          <input type="string" class="form-control" name="user_email" id="exampleFormControlSelect1" placeholder="Enter User Email" required>
 
-    @error('user_password')
-  <div class="alert alert-danger">{{$message}}</div>
-  @enderror
+          @error('user_email')
+          <div class="alert alert-danger">{{$message}}</div>
+          @enderror
 
-  </div>
-
-  
-  <div class="form-group">
-    <label for="exampleFormControlSelect1">Image</label>
-    <input type="file" class="form-control" name="user_image" id="exampleFormControlSelect1" placeholder="Choose User Image" >
-
-  </div>
+        </div>
 
 
-  <button class="btn btn-primary">Submit</button>
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Password</label>
+          <input type="string" class="form-control" name="user_password" id="exampleFormControlSelect1" placeholder="Enter User Password" required>
 
-</form>
+          @error('user_password')
+          <div class="alert alert-danger">{{$message}}</div>
+          @enderror
 
+        </div>
+
+
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Image</label>
+          <input type="file" class="form-control" name="user_image" id="exampleFormControlSelect1" placeholder="Choose User Image">
+
+        </div>
+
+
+        <button class="btn btn-primary">Submit</button>
+
+  </form>
+</div>
 @endsection
+</body>
+</html>

@@ -15,7 +15,7 @@ class HomeController extends Controller
         $customers=User::where('role','customer')->count();
         $orders=Order::all()->count();
         $pending=Order::where('status','pending')->count();
-        //$prices=Order::all('total_price')->count();
-        return view('admin.pages.home.home',compact('customers','orders','pending'));
+        $sales=Order::sum('total_price');
+        return view('admin.pages.home.home',compact('customers','orders','pending','sales'));
     }
 }

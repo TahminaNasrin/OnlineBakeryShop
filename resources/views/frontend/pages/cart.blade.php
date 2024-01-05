@@ -7,10 +7,10 @@
       <div class="col">
         <div class="card">
           <div class="card-body p-4">
-
+          @if(session()->has('vcart'))
             <div class="row">
-              <h5 class="mb-4" ><a href="{{route('whole.cart.remove')}}" type="button" class="text-body">Remove Cart</a></h5>
-              
+              <h5 class="mb-4"><a href="{{route('whole.cart.remove')}}" type="button" class="text-body">Remove Cart</a></h5>
+
               <div class="col-lg-7">
                 <h5 class="mb-3"><a href="#!" class="text-body"><i class="fas fa-long-arrow-alt-left me-2"></i>Continue shopping</a></h5>
                 <hr>
@@ -44,7 +44,7 @@
                     <div class="d-flex justify-content-between">
                       <div class="d-flex flex-row align-items-center">
                         <div>
-                          <img src="{{url('/uploads/')}}" class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
+                          <img src="{{url('/uploads/'.$item['image'])}}" class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
                         </div>
                         <div class="ms-3">
                           <h5>{{$item['name']}}</h5>
@@ -57,7 +57,7 @@
                           <i class="fas fa-minus"></i>
                         </a>
 
-                        <input type="text" class="qty-input form-control" maxlength="2" min="0" max="15" value="{{$item['quantity']}}">
+                        <input type="text" class="qty-input form-control"  min="1" max="10" value="{{$item['quantity']}}">
                         <!-- <input id="form1" min="0" name="quantity" value="2" type="number" class="form-control form-control-sm" /> -->
 
                         <a href="{{route('cart.quantity.increase',$item['id'])}}" type="button" class="btn btn-link px-2" onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
@@ -99,7 +99,7 @@
 
                   <div class="d-flex justify-content-between mb-4">
                     <p class="mb-2">Total(Incl. taxes)</p>
-                    <p class="mb-2">{{ $subtotal+80 }} BDT</p>
+                    <p class="mb-2">{{ $subtotal+80 }} .BDT</p>
                   </div>
 
                   <a type="button" href="{{route('checkout')}}" class="btn btn-info btn-block btn-lg">
@@ -108,14 +108,15 @@
                       <span>Checkout <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
                     </div>
                   </a>
-
                 </div>
               </div>
-
             </div>
-
+            @else
+              <div class="text-center p-4">
+                <h1>Your Cart is Currently Empty!</h1>
+              </div>
+              @endif
           </div>
-
         </div>
       </div>
     </div>

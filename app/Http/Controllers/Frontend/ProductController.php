@@ -39,5 +39,13 @@ class ProductController extends Controller
 
     }
 
-    
+    public function productsUnderCategory($category_name)
+    {
+        
+        $productsUnderCategory=Product::where('category_name',$category_name)->get();
+        // $products=Product::whereIn('category_id',[4,5])->get();
+        return view('frontend.pages.products-under-category',compact('productsUnderCategory'));
+    }
+
+
 }

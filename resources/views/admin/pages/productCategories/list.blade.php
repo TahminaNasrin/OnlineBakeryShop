@@ -1,5 +1,6 @@
 @extends('admin.master')
 @section('content')
+<div class="container-fluid px-4">
 <h1>Product Categories list</h1>
 <a href="{{route('categories.form')}}">
     <button class='btn btn-success'>Add Product Category</button>
@@ -30,5 +31,6 @@
     @endforeach
   </tbody>
 </table>
+</div>
 {{$categories->links()}}
 @endsection

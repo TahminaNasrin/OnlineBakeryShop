@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Models\User;
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -16,8 +18,11 @@ class HomeController extends Controller
 
 
       $products = Product::all();
+      $customers=User::where('role','customer')->count();
+      $orders=Order::all()->count();
+      $product=Product::all()->count();
       //dd('Hello Frontend');
       notify()->success('Welcome to Online Shop.');
-      return view('frontend.pages.home', compact('products'));
+      return view('frontend.pages.home', compact('products','customers','orders','product'));
    }
 }

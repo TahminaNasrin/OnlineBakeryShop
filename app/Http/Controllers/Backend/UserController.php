@@ -100,4 +100,19 @@ class UserController extends Controller
 
         return redirect()->back()->witherrors($validate);
     }
+
+    public function delete($id)
+    {
+        //dd($id);
+        $users=User::find($id);
+        //dd($category);
+        if($users)
+        {
+            $users->delete();
+        }
+        notify()->success('Users Deleted Successfully');
+
+        return redirect()->back();
+
+    }
 }
