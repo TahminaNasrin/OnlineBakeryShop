@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\OrderDetails;
 use Illuminate\Support\Facades\Validator;
 
 class CustomerController extends Controller
@@ -19,17 +20,18 @@ class CustomerController extends Controller
     public function profile()
     {
         //$products=Product::all();
-        $product=Product::where('id')->get();
-         $orders = Order::where('user_id', auth()->user()->id)->get();
+        $product = Product::where('id')->get();
+        $orders = Order::where('user_id', auth()->user()->id)->get();
+        $orderDetails = OrderDetails::with(['order', 'product', 'user'])->get();
         //$orders = Order::with('product')->where('user_id', auth()->user()->id)->get();
-        return view('frontend.pages.profile', compact('orders','product'));
+        return view('frontend.pages.profile', compact('orders', 'product', 'orderDetails'));
     }
 
-    
+
 
     public function profileEdit($id)
     {
-        
+
         $users = User::find($id);
         return view('frontend.pages.profile-edit', compact('users'));
     }
@@ -115,9 +117,7 @@ class CustomerController extends Controller
 
     public function orderSummary($orderId)
     {
-        $order=Order::find('$orderId');
-        return view('frontend.pages.order-summary',compact('order'));
+        $order = Order::find('$orderId');
+        return view('frontend.pages.order-summary', compact('order'));
     }
-
-
 }

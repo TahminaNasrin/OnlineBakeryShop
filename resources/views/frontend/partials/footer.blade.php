@@ -19,9 +19,9 @@
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-light mb-4">Quick Links</h4>
-                    <a class="btn btn-link" href="{{route('about.us')}}">About Us</a>
-                    <a class="btn btn-link" href="">Contact Us</a>
-                    <a class="btn btn-link" href="">Our Services</a>
+                    <a class="btn btn-link" href="{{route('customer.login')}}">Login</a>
+                    <a class="btn btn-link" href="{{route('customer.registration')}}">Registration</a>
+                    <a class="btn btn-link" href="{{route('user.review')}}">Give Customer Reviews</a>
                     <a class="btn btn-link" href="">Terms & Condition</a>
                     <a class="btn btn-link" href="">Support</a>
                 </div>

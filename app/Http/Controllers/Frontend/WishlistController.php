@@ -13,9 +13,13 @@ class WishlistController extends Controller
 
     public function wishlistView($user_id)
     {
-        //dd($user_id);
+       //dd($user_id);
         $wishlist = Wishlist::with('product')->where('user_id', $user_id)->get();
-        // dd($count);
+
+        $wishlist = $wishlist->filter(function ($item) {
+            return !is_null($item->product);
+        });
+         
         return view('frontend.pages.wishlist', compact('wishlist'));
     }
 

@@ -2,9 +2,9 @@
 @section('content')
 
 
+<div class="container-xxl transparent my-6 py-6 pt-0">
+    <div class="container">
 
-<div class="container">
-    
         <div class="row">
             <div class="col-12">
                 <div class="card">
@@ -15,7 +15,7 @@
                                 <div class="image-container">
                                     <img src="{{url('/uploads/'. auth()->user()->image)}}" id="imgProfile" style="width: 150px; height: 150px" class="img-thumbnail" />
                                     <div class="middle">
-                                     <a href="{{route('profile.edit', auth()->user()->id)}}" class="m-t-10 waves-effect waves-dark btn btn-primary btn-md btn-rounded" >Edit Profile</a>
+                                        <a href="{{route('profile.edit', auth()->user()->id)}}" class="m-t-10 waves-effect waves-dark btn btn-primary btn-md btn-rounded">Edit Profile</a>
                                     </div>
                                 </div>
                                 <div class="userData ml-3">
@@ -31,10 +31,10 @@
 
                         <div class="row">
                             <div class="col-12">
-                                
+
                                 <div class="tab-content ml-1" id="myTabContent">
                                     <div class="tab-pane fade show active" id="basicInfo" role="tabpanel" aria-labelledby="basicInfo-tab">
-                                        
+
 
                                         <div class="row">
                                             <div class="col-sm-3 col-md-2 col-5">
@@ -45,8 +45,8 @@
                                             </div>
                                         </div>
                                         <hr />
-                                        
-                                        
+
+
                                         <div class="row">
                                             <div class="col-sm-3 col-md-2 col-5">
                                                 <label style="font-weight:bold;">Email</label>
@@ -66,7 +66,7 @@
                                         </div>
 
                                     </div>
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -78,52 +78,76 @@
         </div>
     </div>
 
-    
-    <a class="btn btn-warning" href="">Invoice List</a>
-    <h1>Order list</h1>
-    <hr>
-    <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Date</th>
-      <th scope="col">Product Id</th>
-      <th scope="col">Address</th>
-      <th scope="col">Receiver Mobile</th>
-      <th scope="col">Receiver Name</th>
-      <th scope="col">Receiver Email</th>
-      <th scope="col">Status</th>
-      <th scope="col">Action</th>
-    </tr>
-  </thead>
-  <tbody>   
 
- 
-    @foreach ($orders as $order)
-   
-        <tr>
-          <th scope="row">{{$order->id}}</th>
-          <td>{{$order->created_at}}</td>
-          <td>{{ $order->user->name }}</td>
-          <td>{{$order->address}}</td>
-          <td>{{$order->receiver_mobile}}</td>
-          <td>{{$order->receiver_name}}</td>
-          <td>{{$order->receiver_email }}</td>
-          <td>{{$order->status}}</td>
-          <td>
-            @if($order->status=='pending'||'confirm')
-            <a class="btn btn-warning" href="{{route('profile.order.summary',$order->id)}}">Order Summary</a>
-            <a class="btn btn-danger" href="{{route('order.cancel',$order->id)}}">Cancel Order</a>
-            @endif  
-        </td>
-        </tr>
-    @endforeach
-       
-        
-   
-    
-  </tbody>
-</table>
+    <!-- <a class="btn btn-warning" href="">Invoice List</a> -->
+
+    <button class="btn btn-success" onclick="printContent('printDiv')">Print</button>
+
+    <div id="printDiv">
+
+        <h1>Order list</h1>
+        <hr>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">User Name</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Receiver Mobile</th>
+                    <th scope="col">Receiver Name</th>
+                    <th scope="col">Receiver Email</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Total Amount</th>
+                    <th scope="col">Order Note</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
 
 
-@endsection
+                @foreach ($orderDetails as $key=>$orderDetail)
+
+                <tr>
+                    <th scope="row">{{$orderDetail->order->id}}</th>
+                    <td>{{$orderDetail->created_at}}</td>
+                    <td>{{ $orderDetail->user->name }}</td>
+                    <td>{{$orderDetail->order->address}}</td>
+                    <td>{{$orderDetail->order->receiver_mobile}}</td>
+                    <td>{{$orderDetail->order->receiver_name}}</td>
+                    <td>{{$orderDetail->order->receiver_email }}</td>
+                    <td>{{$orderDetail->quantity }}</td>
+                    <td>{{$orderDetail->subtotal }}</td>
+                    <td>{{$orderDetail->order->order_note }}</td>
+                    <td>{{$orderDetail->order->status}}</td>
+                    <td>
+                        @if($orderDetail->order->status == 'pending')
+                        <!-- <a class="btn btn-warning" href="{{ route('profile.order.summary', $orderDetail->order->id) }}">Order Summary</a> -->
+                        <a class="btn btn-danger" href="{{ route('order.cancel', $orderDetail->order->id) }}">Cancel Order</a>
+                        @endif
+                    </td>
+                </tr>
+                @endforeach
+
+
+
+
+            </tbody>
+        </table>
+    </div>
+
+    @endsection
+
+    @push('yourJsCode')
+
+    <script type="text/javascript">
+        function printContent(el) {
+            var restorepage = $('body').html();
+            var printcontent = $('#' + el).clone();
+            $('body').empty().html(printcontent);
+            window.print();
+            $('body').html(restorepage);
+        }
+    </script>
+    @endpush

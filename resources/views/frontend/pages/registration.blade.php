@@ -1,5 +1,5 @@
 @extends('frontend.master')
-@section('content')
+@section('registration')
 
 <!-- <form action="{{route('customer.registration.store')}}" method="post" autocomplete="off">
     @csrf

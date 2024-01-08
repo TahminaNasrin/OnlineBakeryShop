@@ -3,12 +3,30 @@
 
 <div class="container-fluid px-4">
 
-<form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0" action="{{route('sales.report.search')}}" method="get" autocomplete="off">
+<form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0" action="{{ route('sales.report.search') }}" method="get" autocomplete="off">
+    <div class="input-group">
+       <b> Start Date: </b><input class="form-control" type="date" placeholder="Start Date" name="start_date" aria-label="Start Date" />
+        <b> End Date: </b><input class="form-control" type="date" placeholder="End Date" name="end_date" aria-label="End Date" />
+        <button class="btn btn-primary" id="btnNavbarSearch" type="submit"><i class="fas fa-search"></i></button>
+    </div>
+</form>
+
+
+
+<!-- <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0" action="{{route('sales.report.search')}}" method="get" autocomplete="off">
   <div class="input-group">
     <input class="form-control" type="date" placeholder="Search for..." name="search" aria-label="Search for..." aria-describedby="btnNavbarSearch" />
     <button class="btn btn-primary" id="btnNavbarSearch" type="submit"><i class="fas fa-search"></i></button>
   </div>
-</form>
+</form> -->
+<!-- <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0" action="{{ route('sales.report.search') }}" method="get" autocomplete="off">
+    <div class="input-group">
+        <input class="form-control" type="date" placeholder="Start Date" name="start_date" aria-label="Start Date" required /> To
+        <input class="form-control" type="date" placeholder="End Date" name="end_date" aria-label="End Date" required />
+        <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
+    </div>
+</form> -->
+
 
 
 <button class="btn btn-success" onclick="printContent('printDiv')">Print</button>

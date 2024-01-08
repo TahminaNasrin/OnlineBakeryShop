@@ -22,6 +22,7 @@ use App\Http\Controllers\Frontend\HomeController as FrontendHomeController;
 use App\Http\Controllers\Frontend\OrderController as FrontendOrderController;
 use App\Http\Controllers\Frontend\ProductController as FrontendProductController;
 use App\Http\Controllers\Frontend\CustomerController as FrontendCustomerController;
+use App\Http\Controllers\Frontend\ReviewController as FrontendReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,6 +66,8 @@ Route::get('/add-to-wishlist/{product_id}', [WishlistController::class, 'store']
 Route::get('/remove-wishlist/{wishlist_id}', [WishlistController::class, 'remove'])->name('remove.Wishlist');
 //Route::get('/buy-now/{id}',[FrontendOrderController::class,'buyNow'])->name('buy.now');
 
+Route::get('/user/review',[FrontendReviewController::class, 'review'])->name('user.review');
+Route::post('/store-review',[FrontendReviewController::class,'storeReview'])->name('review.store');
 
 Route::group(['middleware'=>'auth'],function(){
 
@@ -157,6 +160,8 @@ Route::get('/search-date',[OrderDetailsController::class,'search'])->name('sales
 // Route::post('/payment/store',[PaymentController::class,'store'])->name('payment.store');
 
 Route::get('/report/list',[ReportController::class,'list'])->name('report.list');
+
+Route::get('/review/list',[ReviewController::class,'list'])->name('review.list');
 
 
 Route::get('/delivery-man/list',[DeliveryManController::class,'list'])->name('deliveryMan.list');

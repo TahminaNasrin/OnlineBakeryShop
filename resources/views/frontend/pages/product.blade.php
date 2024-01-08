@@ -1,13 +1,5 @@
 @extends('frontend.master')
-@section('content')
-
-<!-- <style>
-.button-container {
-    text-align: center;
-    margin-top: 50px;
-}
-</style> -->
-
+@section('product')
 <div class="container-xxl bg-light my-6 py-6 pt-0">
     <div class="container">
         <h1 class="display-6 mb-4">Search Your Product: </h1>

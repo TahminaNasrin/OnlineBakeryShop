@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top py-lg-0 px-lg-5 wow fadeIn" data-wow-delay="0.1s">
         <a href="index.html" class="navbar-brand ms-4 ms-lg-0">
@@ -9,21 +10,21 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav mx-auto p-4 p-lg-0">
                 <a href="{{route('frontend.home')}}" class="nav-item nav-link active">Home</a>
-                <a href="{{route('about.us')}}" class="nav-item nav-link">About</a>
+                <a href="{{route('about.us')}}" class="nav-item nav-link active">About</a>
                 @auth
-                <a href="{{route('wishlist.view',auth()->user()->id)}}" class="nav-item nav-link">Wishlist</a>
+                <a href="{{route('wishlist.view',auth()->user()->id)}}" class="nav-item nav-link active">Wishlist</a>
                 @endauth
 
-                <a href="{{route('product.all')}}" class="nav-item nav-link">Products</a>
+                <a href="{{route('product.all')}}" class="nav-item nav-link active">Products</a>
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Categories</a>
+                    <a href="#" class="nav-link active dropdown-toggle" data-bs-toggle="dropdown">Categories</a>
                     <div class="dropdown-menu m-0">
                         @foreach ($headerCategories as $category)
                         <a href="{{route('products.under.category',$category->name)}}" class="dropdown-item">{{$category->name}}</a>
                         @endforeach
                     </div>
                 </div>
-                <a href="contact.html" class="nav-item nav-link">Contact</a>
+                <a href="contact.html" class="nav-item nav-link active">Contact</a>
             </div>
             <div class=" d-none d-lg-flex">
                 <!-- <div class="flex-shrink-0 btn-lg-square border border-light rounded-circle">
@@ -70,7 +71,7 @@
                     <a class="btn-lg-square text-primary pe-0" href="{{route('profile.view')}}" style="margin-left:5px ;"> ({{auth()->user()->name}}) </a>
                 </div>
                 @endauth
-
+                
             </div>
 
         </div>

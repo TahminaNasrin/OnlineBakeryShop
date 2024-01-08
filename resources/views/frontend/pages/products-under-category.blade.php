@@ -1,5 +1,6 @@
 @extends('frontend.master')
-@section('content')
+@section('product')
+<div class="container-xxl bg-light my-6 py-6 pt-0">
 <div class="container">
     <div class="row g-4">
         
@@ -39,5 +40,6 @@
         <h1>Not found any products!</h1>
         @endif
     </div>
+</div>
 </div>
 @endsection

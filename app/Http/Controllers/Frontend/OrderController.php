@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Models\User;
 use App\Models\Order;
+use App\Models\Product;
 use App\Models\OrderDetails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -16,45 +17,91 @@ class OrderController extends Controller
     
     
     
+    // public function orderPlace(Request $request)
+    // {
+    //     //dd($request->all());
+    //     //$productId = $request->input('product_id');
+    //     $cart=session()->get('vcart');
+        
+    //     $order=Order::create([
+    //         'user_id'=>auth()->user()->id,
+    //         'status'=>'pending',
+    //         'total_price'=>array_sum(array_column($cart,'subtotal')),
+    //         'address'=>$request->address,
+    //         'receiver_mobile'=>$request->receiver_mobile,
+    //         'receiver_name'=>$request->receiver_name,
+    //         'receiver_email'=>$request->receiver_email,
+    //         'order_note'=>$request->order_note,
+    //         'transaction_id'=>date('YmdHis'),
+    //         'delivery_men_name'=>$request->delivery_men_name,
+            
+    //     ]);
+        
+    //     foreach($cart as $key=> $item)
+    //     {
+    //         OrderDetails::create([
+    //             'order_id'=>$order->id,
+    //             // 'product_id'=>$key,
+    //             'product_name'=>$item['name'],
+    //             'user_id'=>auth()->user()->id,
+    //             'user_name'=>auth()->user()->name,
+    //             'quantity'=>$item['quantity'],
+    //             'subtotal'=>$item['subtotal'],
+    //         ]);
+            
+    //     }
+        
+    //     session()->forget('vcart');
+    //     $this->payment($order);
+
+    //     notify()->success("Order Place Successfull.");
+    //     return redirect()->back();
+
+    // }
+
+
     public function orderPlace(Request $request)
     {
-        //dd($request->all());
-        //$productId = $request->input('product_id');
-        $cart=session()->get('vcart');
+        $cart = session()->get('vcart');
         
-        $order=Order::create([
-            'user_id'=>auth()->user()->id,
-            'status'=>'pending',
-            'total_price'=>array_sum(array_column($cart,'subtotal')),
-            'address'=>$request->address,
-            'receiver_mobile'=>$request->receiver_mobile,
-            'receiver_name'=>$request->receiver_name,
-            'receiver_email'=>$request->receiver_email,
-            'transaction_id'=>date('YmdHis'),
-            'delivery_men_name'=>$request->delivery_men_name,
+        $order = Order::create([
+            'user_id' => auth()->user()->id,
+            'status' => 'pending',
+            'total_price' => array_sum(array_column($cart, 'subtotal')),
+            'address' => $request->address,
+            'receiver_mobile' => $request->receiver_mobile,
+            'receiver_name' => $request->receiver_name,
+            'receiver_email' => $request->receiver_email,
+            'order_note' => $request->order_note,
+            'transaction_id' => date('YmdHis'),
+            'delivery_men_name' => $request->delivery_men_name,
         ]);
-        
-        foreach($cart as $key=> $item)
-        {
-            OrderDetails::create([
-                'order_id'=>$order->id,
-                // 'product_id'=>$key,
-                'product_name'=>$item['name'],
-                'user_id'=>auth()->user()->id,
-                'user_name'=>auth()->user()->name,
-                'quantity'=>$item['quantity'],
-                'subtotal'=>$item['subtotal'],
-            ]);
-            
+    
+        foreach ($cart as $key => $item) {
+            // Assuming product_name in cart corresponds to the name field in the products table
+            $product = Product::where('name', $item['name'])->first();
+    
+            if ($product) {
+                OrderDetails::create([
+                    'order_id' => $order->id,
+                    'product_id' => $product->id,
+                    'product_name' => $item['name'],
+                    'user_id' => auth()->user()->id,
+                    'user_name' => auth()->user()->name,
+                    'quantity' => $item['quantity'],
+                    'subtotal' => $item['subtotal'],
+                ]);
+            }
         }
-        
+    
         session()->forget('vcart');
         $this->payment($order);
-
-        notify()->success("Order Place Successfull.");
+    
+        notify()->success("Order Place Successfully.");
         return redirect()->back();
-
     }
+    
+
 
     public function payment($newOrder)
     {

@@ -1,7 +1,8 @@
 @extends('frontend.master')
 
 
-@section('content')
+@section('about-us')
+<div class="container-xxl bg-light my-6 py-6 pt-0 "> 
 <div class="container">
     <div class="container-xxl py-6">
         <div class="container">
@@ -36,12 +37,13 @@
                                 <i class="fa fa-check text-primary me-2"></i>Home Delivery
                             </div>
                         </div>
-                        <a class="btn btn-primary rounded-pill py-3 px-5" href="">Read More</a>
+                        <!-- <a class="btn btn-primary rounded-pill py-3 px-5" href="">Read More</a> -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+</div>
 </div>
 @endsection
