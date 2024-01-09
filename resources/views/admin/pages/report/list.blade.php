@@ -16,10 +16,10 @@
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6 text-right">
 						<div class="receipt-right">
-							<h5>Company Name.</h5>
-							<p>+1 3649-6589 <i class="fa fa-phone"></i></p>
-							<p>company@gmail.com <i class="fa fa-envelope-o"></i></p>
-							<p>USA <i class="fa fa-location-arrow"></i></p>
+							<h5>Online Bakery Shop</h5>
+							<p>01834540384 <i class="fa fa-phone"></i></p>
+							<p>bakeryshop@gmail.com <i class="fa fa-envelope-o"></i></p>
+							<p>Bangladesh <i class="fa fa-location-arrow"></i></p>
 						</div>
 					</div>
 				</div>

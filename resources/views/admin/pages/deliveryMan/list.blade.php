@@ -29,8 +29,8 @@
       <td>{{$delivery->image}}</td>
       <td>
         
-        <a href="" class="btn btn-danger">Delete</a>
-        <a href="" class="btn btn-success">Edit</a>
+        <a href="{{route('deliveryMan.delete',$delivery->id)}}" class="btn btn-danger">Delete</a>
+        <a href="{{route('deliveryMan.edit',$delivery->id)}}" class="btn btn-success">Edit</a>
       </td>
     </tr>
     @endforeach

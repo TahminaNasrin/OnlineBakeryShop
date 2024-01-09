@@ -24,7 +24,6 @@
       <td>
         <a href="{{route('categories.edit',$category->id)}}" class="btn btn-success">Edit</a>
         <a href="{{route('categories.delete',$category->id)}}" class="btn btn-danger">Delete</a>
-        <a class="btn btn-primary">View</a>
      </td>
     </tr>
     

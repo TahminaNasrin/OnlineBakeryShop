@@ -20,8 +20,8 @@
                                 </div>
                                 <div class="userData ml-3">
                                     <h2 class="d-block" style="font-size: 1.5rem; font-weight: bold"><a href="javascript:void(0);">{{auth()->user()->name}}</a></h2>
-                                    <h6 class="d-block"><a href="javascript:void(0)">20</a> Completed Orders</h6>
-                                    <h6 class="d-block"><a href="javascript:void(0)">6</a> Pending Oders</h6>
+                                    <!-- <h6 class="d-block"><a href="javascript:void(0)">20</a> Completed Orders</h6>
+                                    <h6 class="d-block"><a href="javascript:void(0)">6</a> Pending Oders</h6> -->
                                 </div>
                                 <div class="ml-auto">
                                     <input type="button" class="btn btn-primary d-none" id="btnDiscard" value="Discard Changes" />
@@ -118,13 +118,17 @@
                     <td>{{$orderDetail->order->receiver_name}}</td>
                     <td>{{$orderDetail->order->receiver_email }}</td>
                     <td>{{$orderDetail->quantity }}</td>
-                    <td>{{$orderDetail->subtotal }}</td>
+                    <td>{{$orderDetail->subtotal+80 }}</td>
                     <td>{{$orderDetail->order->order_note }}</td>
                     <td>{{$orderDetail->order->status}}</td>
                     <td>
+
                         @if($orderDetail->order->status == 'pending')
-                        <!-- <a class="btn btn-warning" href="{{ route('profile.order.summary', $orderDetail->order->id) }}">Order Summary</a> -->
                         <a class="btn btn-danger" href="{{ route('order.cancel', $orderDetail->order->id) }}">Cancel Order</a>
+                        @endif
+
+                        @if(in_array($orderDetail->order->status, ['confirm', 'Delivery Man Assigned', 'Order Completed']))
+                        <a class="btn btn-warning" href="{{ route('generate.invoice', $orderDetail->order->id) }}">Invoice</a>
                         @endif
                     </td>
                 </tr>

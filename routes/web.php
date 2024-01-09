@@ -22,6 +22,7 @@ use App\Http\Controllers\Frontend\HomeController as FrontendHomeController;
 use App\Http\Controllers\Frontend\OrderController as FrontendOrderController;
 use App\Http\Controllers\Frontend\ProductController as FrontendProductController;
 use App\Http\Controllers\Frontend\CustomerController as FrontendCustomerController;
+use App\Http\Controllers\Frontend\InvoiceController;
 use App\Http\Controllers\Frontend\ReviewController as FrontendReviewController;
 
 /*
@@ -74,7 +75,8 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('/profile',[FrontendCustomerController::class,'profile'])->name('profile.view');
     Route::get('/profile-edit/{id}',[FrontendCustomerController::class, 'profileEdit'])->name('profile.edit');
     Route::put('/profile-update/{id}',[FrontendCustomerController::class,'update'])->name('profile.update');
-    Route::get('/profile/order-summary/{id}',[FrontendCustomerController::class, 'orderSummary'])->name('profile.order.summary');
+    Route::get('/invoice/{orderId}', [InvoiceController::class,'generateInvoice'])->name('generate.invoice');
+    //Route::get('/profile/order-summary/{id}',[FrontendCustomerController::class, 'orderSummary'])->name('profile.order.summary');
 
     Route::get('/logout',[FrontendCustomerController::class,'logout'])->name('customer.logout');
     Route::get('/checkout',[FrontendCartController::class,'checkout'])->name('checkout');
@@ -155,10 +157,6 @@ Route::post('/order-details/store',[OrderDetailsController::class,'store'])->nam
 Route::get('/search-date',[OrderDetailsController::class,'search'])->name('sales.report.search');
 
 
-// Route::get('/payment/list',[PaymentController::class,'list'])->name('payment.list');
-// Route::get('/payment/form',[PaymentController::class,'form'])->name('payment.form');
-// Route::post('/payment/store',[PaymentController::class,'store'])->name('payment.store');
-
 Route::get('/report/list',[ReportController::class,'list'])->name('report.list');
 
 Route::get('/review/list',[ReviewController::class,'list'])->name('review.list');
@@ -167,7 +165,9 @@ Route::get('/review/list',[ReviewController::class,'list'])->name('review.list')
 Route::get('/delivery-man/list',[DeliveryManController::class,'list'])->name('deliveryMan.list');
 Route::get('/delivery-man/form',[DeliveryManController::class,'form'])->name('deliveryMan.form');
 Route::post('/delivery-man/store',[DeliveryManController::class,'store'])->name('deliveryMan.store');
-
+Route::get('/delivery-man/delete/{id}',[DeliveryManController::class,'delete'])->name('deliveryMan.delete');
+Route::get('/delivery-man/edit/{id}',[DeliveryManController::class,'edit'])->name('deliveryMan.edit');
+Route::put('/delivery-man/update/{id}',[DeliveryManController::class,'update'])->name('deliveryMan.update');
 
 
 Route::get('/users/list',[UserController::class,'list'])->name('users.list');

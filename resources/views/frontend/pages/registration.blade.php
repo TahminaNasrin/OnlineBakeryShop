@@ -35,17 +35,17 @@
                 @csrf
 
                 <div class="form-outline mb-4">
-                  <input name="name" type="text" id="form3Example1cg" class="form-control form-control-lg" />
+                  <input name="name" type="text" id="form3Example1cg" class="form-control form-control-lg" required/>
                   <label class="form-label" for="form3Example1cg">Your Name</label>
                 </div>
 
                 <div class="form-outline mb-4">
-                  <input name="email" type="email" id="form3Example3cg" class="form-control form-control-lg" />
+                  <input name="email" type="email" id="form3Example3cg" class="form-control form-control-lg" required/>
                   <label class="form-label" for="form3Example3cg">Your Email</label>
                 </div>
 
                 <div class="form-outline mb-4">
-                  <input name="password" type="password" id="form3Example4cg" class="form-control form-control-lg" />
+                  <input name="password" type="password" id="form3Example4cg" class="form-control form-control-lg" required/>
                   <label class="form-label" for="form3Example4cg">Password</label>
                 </div>
 

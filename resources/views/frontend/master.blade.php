@@ -19,6 +19,7 @@
     <!-- Navbar End -->
 
     <main>
+    
     @yield('login')
     @yield('registration')
     @yield('facts')
@@ -27,6 +28,7 @@
     @yield('service')
     @yield('review')
     @yield('wishlist')
+    @yield('invoice')
     </main>
     
 

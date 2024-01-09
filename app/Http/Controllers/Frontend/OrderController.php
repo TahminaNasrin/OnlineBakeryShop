@@ -78,7 +78,7 @@ class OrderController extends Controller
         ]);
     
         foreach ($cart as $key => $item) {
-            // Assuming product_name in cart corresponds to the name field in the products table
+            
             $product = Product::where('name', $item['name'])->first();
     
             if ($product) {
@@ -112,7 +112,7 @@ class OrderController extends Controller
         //dd($newOrder);
         $post_data = array();
         $post_data['total_amount'] = $newOrder->total_price+80; # You cant not pay less than 10
-        $post_data['currency'] = "BDT";
+        $post_data['currency'] = ".BDT";
         $post_data['tran_id'] = $newOrder->transaction_id; // tran_id must be unique
 
         # CUSTOMER INFORMATION

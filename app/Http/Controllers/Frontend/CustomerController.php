@@ -115,9 +115,9 @@ class CustomerController extends Controller
         return redirect()->back();
     }
 
-    public function orderSummary($orderId)
-    {
-        $order = Order::find('$orderId');
-        return view('frontend.pages.order-summary', compact('order'));
-    }
+    // public function orderSummary($orderId)
+    // {
+    //     $order = Order::find('$orderId');
+    //     return view('frontend.pages.invoice', compact('order'));
+    // }
 }
